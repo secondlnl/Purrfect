@@ -1,0 +1,22 @@
+0000000000000000000000000000000000000000 9df708d0009c2eb74b06c40e3061e306a939d5f3 lnl <lonelytheraphosidae@proton.me> 1710799373 +0100	commit (initial): init
+9df708d0009c2eb74b06c40e3061e306a939d5f3 fc03d13d16fbbd6c6ddee134e98d90975fc2399d lnl <lonelytheraphosidae@proton.me> 1710801729 +0100	commit: Finished *for now* the config!!! XD
+fc03d13d16fbbd6c6ddee134e98d90975fc2399d d30ad83b9366787b11f1213b0ab9e4e1f4e9740e lnl <lonelytheraphosidae@proton.me> 1710801991 +0100	commit: Move the repo to a better place.
+d30ad83b9366787b11f1213b0ab9e4e1f4e9740e 1be328874ac946659a093fe40d357fe9f2a15f11 lnl <lonelytheraphosidae@proton.me> 1710854829 +0100	commit: Add "login.php"
+1be328874ac946659a093fe40d357fe9f2a15f11 c03b48a4bf4b19fa37177dd91d208e76f7e9928f lnl <lonelytheraphosidae@proton.me> 1710878262 +0100	commit: changed "alot" like nothing
+c03b48a4bf4b19fa37177dd91d208e76f7e9928f 9f25582b40bc219342a1d2de235d695203c6c00f lnl <lonelytheraphosidae@proton.me> 1710959216 +0100	commit: ehhh
+9f25582b40bc219342a1d2de235d695203c6c00f 714ecd5da85d9d28dc68471a28500f3db352f7d3 lnl <lonelytheraphosidae@proton.me> 1711023028 +0100	commit: New stuffs
+714ecd5da85d9d28dc68471a28500f3db352f7d3 026100f8be83a03f04a4fa1c1108b5717c726117 lnl <lonelytheraphosidae@proton.me> 1711027156 +0100	commit: Add signup
+026100f8be83a03f04a4fa1c1108b5717c726117 cf249e293527a214a5c220e307bf169dafde7cf6 lnl <lonelytheraphosidae@proton.me> 1711154428 +0100	commit: Close all the connections
+cf249e293527a214a5c220e307bf169dafde7cf6 cfd21982def5d81f4b3d0a002dae197ce4aca772 lnl <lonelytheraphosidae@proton.me> 1711155075 +0100	commit: Start with account
+cfd21982def5d81f4b3d0a002dae197ce4aca772 e15447273e151150038f428e11af720e62e3262b lnl <lonelytheraphosidae@proton.me> 1711155098 +0100	commit: Remove unused file: sad
+e15447273e151150038f428e11af720e62e3262b 813d0a04577e553953ff0290190f379827441954 lnl <lonelytheraphosidae@proton.me> 1711155134 +0100	commit: RE: Close all the connection (now properly)
+813d0a04577e553953ff0290190f379827441954 ad50695d42c067293e665bdabaf878d4c132ac75 lnl <lonelytheraphosidae@proton.me> 1711629962 +0100	commit: Account and favicon
+ad50695d42c067293e665bdabaf878d4c132ac75 30496e52e71660d54863444baeb0aa486cda1ef4 lnl <lonelytheraphosidae@proton.me> 1711668881 +0100	commit: Add a static icon and an animated one
+30496e52e71660d54863444baeb0aa486cda1ef4 48b6c87117984667e73c0fc9eeef6438768cdd49 lnl <lonelytheraphosidae@proton.me> 1711669992 +0100	commit: Maybe a working resetting password implemention
+48b6c87117984667e73c0fc9eeef6438768cdd49 43605a2e3ce3a2a64dc98354fba638bf78d66271 lnl <lonelytheraphosidae@proton.me> 1711670043 +0100	commit: Type to password
+43605a2e3ce3a2a64dc98354fba638bf78d66271 0a8f3ee514357a52eda94d3b75d68023ea7fd44a lnl <lonelytheraphosidae@proton.me> 1711670621 +0100	commit: Reset working CONFIRMED
+0a8f3ee514357a52eda94d3b75d68023ea7fd44a d083173c2ef7e99e743a7770a0e6d1610036dd0b lnl <lonelytheraphosidae@proton.me> 1711670651 +0100	commit: About page: add one
+d083173c2ef7e99e743a7770a0e6d1610036dd0b 0d81cbdec2bd821cdf8782268c8ac4eecce9873c lnl <lonelytheraphosidae@proton.me> 1713387462 +0200	commit: Add css verify badge
+0d81cbdec2bd821cdf8782268c8ac4eecce9873c 0000000000000000000000000000000000000000 secondlnl <142692021+secondlnl@users.noreply.github.com> 1715031215 +0200	Branch: renamed refs/heads/master to refs/heads/main
+0000000000000000000000000000000000000000 0d81cbdec2bd821cdf8782268c8ac4eecce9873c secondlnl <142692021+secondlnl@users.noreply.github.com> 1715031215 +0200	Branch: renamed refs/heads/master to refs/heads/main
+0d81cbdec2bd821cdf8782268c8ac4eecce9873c fbd72ccc54c5933f2cd1816aa1ad46cbc652aa6f secondlnl <142692021+secondlnl@users.noreply.github.com> 1715031343 +0200	commit: init
