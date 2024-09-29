@@ -52,10 +52,10 @@ mysqli_close($conn);
 <h3 id="favourtext"><sub><em>* Not everything</em><sub></h3>
   <form method="post">
     <label for="un">Username:</label>
-    <input type="text" name="un" required>
+    <input type="text" name="un" required placeholder="Username">
 <?php if($un_error == 1){ echo ("<p id=error>Username is not found, maybe sign up &#x2665</p>");} ?>
     <label for="pw">Password:</label>
-    <input type="password" name="pw" required minlength="6">
+    <input type="password" name="pw" required minlength="6" placeholder="Password">
     <?php if($pw_error == 1){ echo ("<p id=error>Password does not match $un </p>");} ?>
     <button type="submit" name="lgin">Login</button>
   </form>

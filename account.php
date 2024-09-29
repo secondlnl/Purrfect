@@ -48,6 +48,7 @@ if ($profilePicture) {
 <form action="Upload.php" method="post" enctype="multipart/form-data">
     <label for="profile_pic">Upload Profile Picture:</label>
     <input type="file" name="profile_pic" id="profile_pic" accept=".png, .jpg, .jpeg">
+    <br>
     <input type="submit" value="Upload">
 </form>
 

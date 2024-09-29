@@ -1,7 +1,7 @@
+
 <?php
 include "header.php";
 include "config.php";
-
 // Retrieve search term from GET request
 $searchTerm = $_GET['search'] ?? '';
 
@@ -17,12 +17,13 @@ $result = $stmt->get_result();
 // Display search results
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo "Product: " . $row['Name'] . " - " . $row['Price'] . " kr<br>";
+        echo "<p><strong>" .$row['Name'] . "</strong> - " . $row['Price'] . " kr</p>";
     }
 } else {
-    echo "No products found for '" . htmlspecialchars($searchTerm) . "'.";
+    echo "<p>No products found for '" . htmlspecialchars($searchTerm) . "'.</p>";
 }
 
 $stmt->close();
 $conn->close();
 ?>
+</main>

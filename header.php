@@ -4,26 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
-        <link href="style.css" rel="stylesheet"/>
+        <link href="style.css" rel="stylesheet" media="screen"/>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
         <link rel="icon" type="image/gif" href="favicon.gif">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div id=head>
-        <pre><strong> /\ /\
- > w < /
-</strong></pre>
-            <nav>
-                    <a href="about.php">about</a>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">        
+        <div id=header>
+	<img src="logo.svg" id="logo" alt="Website icon">     
+  <nav id="nav">
+  <form id="search-form" method="get" action=search.php>
+		<input type="text" id="search" name="search" placeholder="Search for a product">
+		<div id="thing"><button type="submit" aria-label="search" id="search"><i class="material-icons">search</i></button><label for="search">Search</label></div>			
+</form>
+  <div id="thing"><a href=about.php aria-label="about" id="about" name="about"><i class="material-icons">&#xe88e;</i></a><label for="about">About</label></div>	
 <?php
 session_start();
-if (!isset($_SESSION["loggedin"])) echo "<a href='index.php'>login</a>";
+// if (!isset($_SESSION["loggedin"])) header("location: index.php");
 
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] = true) echo "<a href='account.php'>account</a><a href='store.php'>store</a>";
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] = true) echo "<div id='thing'><a href=account.php id='account' name='account'><i class='material-icons'>&#xe7fd;</i></a><label for='account'>Account</label></div><div id='thing'><a href=store.php id='store' name='store'><i class='material-icons'>&#xe54c;</i></a><label for='store'>Store</label></div>";
 ?>
-<form method="get" action=search.php>
-<input type="text" placeholder="Search for a product" name="search">
-<button type="submit" id="search"><span> <i class="fa fa-search"></i></span></button>
-</form>
+
+
 
               </nav>
 </div>
+
+<body>
+<div class="header">
+<!-- Header -->
+	<div class="nav">
+	<!-- Navigation -->
+</div>
+</div>
+<main>

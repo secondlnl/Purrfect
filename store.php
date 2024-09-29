@@ -14,7 +14,7 @@ $sql = "SELECT * FROM purchases;";
 		echo "<aside>";
 echo "<h2>Shopping Cart</h2>";
         echo "<form method='post' action='clear.php'>";
-		echo "<button type='submit'>Clear</button></form>";
+		echo "<button type='submit' class='cartremove'>Clear</button></form>";
 			
 echo "<div id='outer'>";
             echo "<div><strong>Name</strong></div>";
@@ -34,7 +34,7 @@ echo "<div id='outer'>";
 		}
 			
 ?>
-<div class="box">
+<div id="box">
 
     <?php
     $sql = "SELECT id, name, description, price FROM products";
@@ -44,12 +44,12 @@ echo "<div id='outer'>";
         // Output data of each row
         while($row = $result->fetch_assoc()) {
             // Display product as a card
-            echo "<div class='card'>";
+            echo "<div id='card'>";
             echo "<h3>" . $row["name"] . "</h3>";
             echo "<p>Description:<br><em> " . $row["description"] . "</em></p>";
             echo "<p>Price: " . $row["price"] . "kr</p>";
 			echo "<form method='post' action='storeprocessor.php'>";
-echo "<button type='submit' value=" . $row['id'] . " name='buy'>Add to Cart</button>";
+echo "<button type='submit' value=" . $row['id'] . " name='buy' class='cartadd'>Add to Cart</button>";
 			echo "</div> </form>";
 			
         }
