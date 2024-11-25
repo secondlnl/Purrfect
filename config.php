@@ -1,13 +1,28 @@
 <?php
 // Declaire constants for quote, endquote Portability
-define("_SERVERADDRESS","Localhost");
-define("_SERVERUSER","root");
-define("_SERVERPASS","");
-define("_DBNAME","PURRFECTDB01");
+define("_SERVERADDRESS", "Localhost");
+define("_SERVERUSER", "root");
+define("_SERVERPASS", "");
+define("_DBNAME", "PURRFECTDB01");
 // Establish connection with MYSQLI
-$conn = new mysqli(_SERVERADDRESS,_SERVERUSER,_SERVERPASS,_DBNAME);
+
+$conn = new mysqli(_SERVERADDRESS, _SERVERUSER, _SERVERPASS, _DBNAME);
 // Using the said database
-$conn->query("USE "._DBNAME);
+mysqli_set_charset($conn, "latin1");
+$conn->query("USE " . _DBNAME);
+
+function querymethis($query, ...$params)
+{
+  $query = strtolower($query); // decapitelise the query
+  if (!empty($query)) {
+    if (substr_count($query, "select") == 1) {
+    }else if (substr_count($query, "insert") == 1) {
+    } else if (substr_count($query, "update") == 1) {
+    }
+  }
+}
+
+
 
 
 // create a prepared statement
@@ -37,4 +52,3 @@ echo "Connection successfully"; **/
 } else {
   echo "Error creating database: " . $conn->error;
 }**/
-?>
