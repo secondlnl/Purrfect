@@ -34,6 +34,9 @@ details {
 img#logo {
   height: 100px;
 }
+img#mlogo {
+  height: 64px;
+}
 h1 {
   font-size: var(--step-4);
 }
@@ -58,7 +61,7 @@ TODO
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-    #card {
+  #card {
     display: flex;
     flex-wrap: wrap;
     margin: 5px;
@@ -78,12 +81,11 @@ TODO
       font-size: var(--step-0);
       display: flex;
     }
-    button#rating.rating{
-    width: 44px;
+    button#rating.rating {
+      width: 44px;
       height: 44px;
-    display: unset !important;
-    text-align: center !important;
-
+      display: unset !important;
+      text-align: center !important;
     }
     .des {
       font-size: var(--step--1);
@@ -125,7 +127,6 @@ TODO
         }
       }
       .comment {
-
         border: 3px solid var(--black);
         border-radius: 10px;
         margin-top: 5px;
@@ -234,10 +235,10 @@ main {
   --yellow: #ffff80;
   --darkyellow: #d9d96c;
   --lightyellow: #ffff66;
-  --black: rgb(0,0,0);
-  --red: #ED8463;
+  --black: rgb(0, 0, 0);
+  --red: #ed8463;
   --green: #73ff73;
-  --darkred: #D86969;
+  --darkred: #d86969;
   --white: white;
   min-width: 320px;
 }
@@ -270,20 +271,20 @@ button.cartadd {
 button.cartremove {
   background-color: var(--red);
 }
-table#yp{
+table#yp {
   text-align: center;
-  background-color: var(--white);
-  border-radius: 20px;
+  border-radius: 10px;
   border: 3px var(--black) solid;
-  margin: 10pt;
+  margin: 10px;
   padding: 5px;
-  tbody#me{
+  tbody#me {
     background-color: var(--green);
-  
-  border-collapse: collapse;
-  }
-  tr:nth-child(even){
-    background-color: var(--cyan);
+    tr:nth-child(even) {
+      background-color: var(--cyan);
+    }
+    td:has(button) {
+      background-color: white !important;
+    }
   }
 }
 
@@ -296,16 +297,15 @@ textarea {
   border: 5px solid var(--black);
   border-radius: 15px;
   padding: 5px;
-  
 }
-textarea{
+textarea {
   padding: 10px;
   min-width: 210px;
   min-height: 75px;
 }
 div#header {
-  padding: 10px;
-  padding-bottom: 0px;
+  /* padding; top | right | bottom | left */
+  padding: 0px 10px 0 10px;
   display: flex;
   background-color: var(--cyan);
   justify-content: space-between;
@@ -354,8 +354,10 @@ div#popup {
   margin-right: 25%;
   text-align: center;
   border-radius: 15px;
+  overflow-y: scroll;
+
   z-index: 10;
-  :has(#box){
+  :has(#box) {
     width: 50%;
     height: 50%;
     margin-right: auto !important;
@@ -365,7 +367,7 @@ div#popup {
     display: flex;
     justify-content: center;
   }
-  
+
   p {
     font-size: 20px;
     margin-top: 3px;
@@ -414,7 +416,7 @@ form#grid {
   display: grid;
   max-width: min-content;
 }
-p#Error{
+p#Error {
   color: var(--darkred);
   font-weight: bold;
   font-size: large;

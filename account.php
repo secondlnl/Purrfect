@@ -25,33 +25,67 @@ if ($BUTTON_PRESSED) {
 ?>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script>
-        $(document).ready(function() {
-            $("#delbutt").click(function() {
-                $.post("product.php", {
-                    opt: "del",
-                    id: $("#delbutt").val()
-                    // TODO Add precidure selection to the script, add the tr.products when done processing, with the new tr 
-                }, function(data) {
-                    $("#me").html( data );
-                });
-            })
-        });
-        $(document).ready(function() {
-            $("#addbutt").click(function() {
-                $.post("product.php", {
-                    opt: "add",
-                    Name: $("#Name").val(),
-                    Description: $("#Description").text(),
-                    Price: $("#Price").val(),
-                    // TODO Add precidure selection to the script, add the tr.products when done processing, with the new tr 
-                }, function(data) {
-                    $("#me").html( data);
-                });
-            })
-        });
-    </script>
-    <script>
+        window.onload = function() {
+            product("show");
+        };
+
+        async function product(opt, id = null) {
+            const req = new XMLHttpRequest();
+            req.open("POST", "productcess.php", true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.onreadystatechange = () => {
+                // Call a function when the state changes.
+                if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
+                    // Request finished. Do processing here.
+                    const resp = req.responseText.trim()
+                    if (resp) {
+                        prow = JSON.parse(req.responseText);
+                        console.log(prow);
+                        document.getElementById("me").innerHTML = "";
+                        prow.forEach(e => {
+                            document.getElementById("me").innerHTML += `
+                    <tr id="products">
+                    <td>${e.name}</td>
+                    <td>${e.price}</td>
+                    <td>${e.description}</td>
+                    <td><button id="Del" class="cartremove" onclick="product('del',${e.id});">Delete</button></td> <td><button></button></td>`;
+                        });
+                    };
+                };
+            };
+            if (opt.toLowerCase() === "del") { // opt del
+                req.send(`opt=del&id=${id}`);
+            } else if (opt.toLowerCase() === "add") { // opt add
+                const name = document.getElementById("Name");
+                const price = document.getElementById("Price");
+                const description = document.getElementById("Description");
+                name.oninput = function() {
+                    document.getElementById("Error").innerHTML = "";
+                }
+                description.oninput = function() {
+                    document.getElementById("Error").innerHTML = "";
+                }
+                price.oninput = function() {
+                    document.getElementById("Error").innerHTML = "";
+                }
+                if (document.getElementById("Error").innerHTML.length <= 0 && description.value.trim() != "" && name.value.trim() != "" && price.value.trim() != "") {
+                    req.send(`opt=add&name=${name.value}&price=${price.value}&description=${description.value}`);
+                    name.value = "";
+                    price.value = "";
+                    description.value = "";
+                } else {
+                    console.log("error be error");
+                    document.getElementById("Error").innerHTML = "Something wrong :C, fill in all the fields.";
+                }
+            } else if (opt.toLowerCase() === "show") {
+                req.send("opt=show");
+            };
+        };
+
         function popuptoggle() {
             var x = document.getElementById("bg");
             if (x.style.display === "none") {
@@ -77,30 +111,23 @@ if ($BUTTON_PRESSED) {
         <h2>Your products</h2>
         <table id="yp">
             <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price (kr)</th>
-                    <th>Description</th>
-                </tr>
+                <th>Name</th>
+                <th>Price (kr)</th>
+                <th>Description</th>
             </thead>
             <tbody id="me">
-                <?php // echo $_SESSION["id"];
-                $query = "SELECT ID, Name, Price, Description FROM products WHERE SellerID = " . $_SESSION["id"] . ";";
-                $res = $conn->query($query);
-                if ($res->num_rows > 0) {
-                    while ($prow = $res->fetch_assoc()) {
-                        echo ("<tr> <td>" . $prow["Name"] . "</td> <td>" . $prow["Price"] . "</td> <td>" . $prow["Description"] . "</td> <td><button onmousedown='deltoggle(" . $prow["ID"] . ");' class='cartremove'><i class='material-icons'>&#xe872;</i></button></td> <td><button><i class='material-icons'>&#xe3c9;</i></button></td></tr>");
-                        echo "<div class='del' id='del" . $prow["ID"] . "' style='display: none;'><h2>Delete the product: " . $prow["Name"] . "</h2><button type='submit' id='delbutt' onclick='deltoggle(" . $prow["ID"] . ");' class='cartadd' Value=" . $prow["ID"] . ">Yes</button><button onmousedown='deltoggle(" . $prow["ID"] . ");' class='cartremove'>No</button></div>";
-                    }
-                } ?>
+
+            </tbody>
+            <tbody>
+                <tr>
+                    <td><input type="text" id="Name" placeholder="Product name"></td>
+                    <td><input type="number" min="1" id="Price" placeholder="Desired price"></td>
+                    <td><textarea id="Description"></textarea></td>
+                    <td><button onclick="product('add');">add</button></td>
+                </tr>
             </tbody>
         </table>
-        <form id="grid">
-            <input type='text' id='Name' required="true" placeholder='Product name'></td>
-            <input type='number' id='Price' placeholder='Desired price' required="true" min='0'></td>
-            <textarea id='Description' placeholder='Product description' required="true"></textarea></td>
-            <button id='addbutt' class='cartadd'><i class='material-icons'>&#xe145;</i></button></td>
-        </form>
+        <p id="Error"></p>
 
 
         <button onmousedown="popuptoggle();" class="cartremove">Close</button>
