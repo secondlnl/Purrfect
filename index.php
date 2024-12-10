@@ -49,19 +49,19 @@ if ($un_error != 1 && $pw_error != 1 && !empty($un) && !empty($pw) && isset($_PO
 mysqli_close($conn);
 ?>
 <title>Purrfect</title>
-<h1 id="title">Hi and welcome to "Purrfect"</h1>
+<h1 class="title">Hi and welcome to "Purrfect"</h1>
 <h2>-- Your one stop shop for everything* cats! <em>meow</em> </h2>
-<h3 id="favourtext"><sub><em>* Not everything</em><sub></h3>
-<form method="post" id="grid">
+<h3 class="favourtext"><sub><em>* Not everything</em><sub></h3>
+<form method="post" class="grid">
     <label for="un">Username:</label>
     <input type="text" name="un" required placeholder="Username">
     <?php if ($un_error == 1) {
-        echo ("<p id=error>Username is not found, maybe sign up &#x2665</p>");
+        echo ("<p class='error'>Username is not found, maybe sign up &#x2665</p>");
     } ?>
     <label for="pw">Password:</label>
     <input type="password" name="pw" required minlength="6" placeholder="Password">
     <?php if ($pw_error == 1) {
-        echo ("<p id=error>Password does not match $un </p>");
+        echo ("<p class='error'>Password does not match $un </p>");
     } ?>
     <button type="submit" name="lgin">Login</button>
 </form>
