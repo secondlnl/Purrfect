@@ -45,22 +45,15 @@ if ($BUTTON_PRESSED) {
                     if (resp) {
                         prow = JSON.parse(req.responseText);
                         console.log(prow);
-                        if (opt === "show") {
-                            document.getElementById("me").innerHTML = "";
-                            prow.forEach(e => {
-                                document.getElementById("me").innerHTML += `
-                                    <tr id="products">
-                                    <td>${e.name}</td>
-                                    <td>${e.price}</td>
-                                    <td>${e.description}</td>
-                                    <td>
-                                        <button id="Del" class="cartremove" onclick="product('del',${e.id});">Delete</button>
-                                    </td> 
-                                    <td>
-                                        <button></button>
-                                    </td>`;
-                            });
-                        };
+                        document.getElementById("me").innerHTML = "";
+                        prow.forEach(e => {
+                            document.getElementById("me").innerHTML += `
+                    <tr id="products">
+                    <td>${e.name}</td>
+                    <td>${e.price}</td>
+                    <td>${e.description}</td>
+                    <td><button id="Del" class="cartremove" onclick="product('del',${e.id});">Delete</button></td> <td><button></button></td>`;
+                        });
                     };
                 };
             };
@@ -112,7 +105,7 @@ if ($BUTTON_PRESSED) {
     </script>
 </head>
 <title>Purrfect - Account</title>
-<div id="bg" style="display: none;">
+<div id="bg" style="display: block;">
 
     <div id="popup">
         <h2>Your products</h2>
@@ -130,7 +123,7 @@ if ($BUTTON_PRESSED) {
                     <td><input type="text" id="Name" placeholder="Product name"></td>
                     <td><input type="number" min="1" id="Price" placeholder="Desired price"></td>
                     <td><textarea id="Description"></textarea></td>
-                    <td><button class="cartadd" onclick="product('add');">add</button></td>
+                    <td><button onclick="product('add');">add</button></td>
                 </tr>
             </tbody>
         </table>

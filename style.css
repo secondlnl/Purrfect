@@ -401,7 +401,7 @@ div.del {
 #bg {
   position: fixed;
   z-index: 0;
-  background-color: rgba(19, 19, 19, 0.15);
+  background-color: rgba(19, 19, 19, 0.5);
   width: 100%;
   height: 100%;
   margin: 0;

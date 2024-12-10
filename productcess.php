@@ -5,12 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     echo "ERROR, you suck";
 } else if (isset($_POST["opt"])) {
 
-    function show($conn)
-    {
-        $p = 0;
-        $n = "";
-        $d = "";
-        $i = 0;
+function show($conn){
+    $p = 0; $n = ""; $d = ""; $i = 0;
         $showq = $conn->prepare("SELECT ID,Name,Description,Price FROM products WHERE SellerID = ?;");
         $showq->bind_param("i", $_SESSION["id"]);
         $showq->execute();
@@ -25,7 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         header('Content-Type: application/json');
         echo json_encode($res);
         $showq->close();
-    }
+}
+
+
     switch ($_POST["opt"]) {
         case 'del':
             $delq = $conn->prepare("DELETE FROM products WHERE ID = ? AND SellerID = ?;");
@@ -37,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             break;
         case 'add':
             $addq = $conn->prepare("INSERT INTO products(Name,Description,Price,SellerID) VALUES(?,?,?,?);");
-            $addq->bind_param("ssii", $_POST["name"], $_POST["description"], $_POST["price"], $_SESSION["id"]);
+            $addq->bind_param("ssii", $_POST["name"], $_POST["description"], $_POST["price"],$_SESSION["id"]);
             $addq->execute();
             $addq->close();
             show($conn);
