@@ -123,7 +123,7 @@ if ($BUTTON_PRESSED) {
                     <td><input type="text" id="Name" placeholder="Product name"></td>
                     <td><input type="number" min="1" id="Price" placeholder="Desired price"></td>
                     <td><textarea id="Description"></textarea></td>
-                    <td><button onclick="product('add');">add</button></td>
+                    <td><button onclick="product('add');">+</button></td>
                 </tr>
             </tbody>
         </table>
