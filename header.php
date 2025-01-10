@@ -12,8 +12,8 @@
   <link rel="icon" type="image/gif" href="favicon.gif">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <div id=header>
-   <!-- <img src="logo.svg" id="logo" alt="Website icon"> -->
-   <img src="paw_print.webp" id="mlogo" alt="Website icon">
+   <img src="logo.svg" id="logo" alt="Website icon">
+   <!-- <img src="paw_print.webp" id="mlogo" alt="Website icon"> -->
 <!--
 Paw Print webp    
 Mutant Standard emoji are licensed CC BY-NC-SA 4.0 International.     
@@ -37,11 +37,11 @@ mutant.tech
     </nav>
   </div>
 
-<body>
-  <div class="header">
+<!-- <body> -->
+  <!-- <div class="header"> -->
     <!-- Header -->
-    <div class="nav">
+    <!-- <div class="nav"> -->
       <!-- Navigation -->
-    </div>
+    <!-- </div>
   </div>
-  <main>
+  <main> -->
