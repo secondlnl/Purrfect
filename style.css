@@ -11,9 +11,10 @@
 }
 details {
   border: 3px solid var(--black);
-  border-radius: var(--step-5);
+  border-radius: var(--step-0);
   background-color: white;
   padding: 10px;
+  margin: 5pt;
   ul {
     list-style: none;
     padding-left: 20px;
