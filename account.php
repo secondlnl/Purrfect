@@ -175,8 +175,12 @@ if ($BUTTON_PRESSED) {
     <div id="orderstable">
         <h1>Orders</h1>
         <?php
-        $sqlo = "SELECT Date,Products FROM orders WHERE UserID = " . $_SESSION["id"] . ";";
-        $resulto = $conn->query($sqlo);
+        $sqlo = "SELECT Date, Products FROM orders WHERE UserID = ? ORDER BY Date DESC";
+        $stmt = $conn->prepare($sqlo);
+        $stmt->bind_param("i", $_SESSION["id"]); // Ensures UserID is treated as an integer
+        $stmt->execute();
+        $resulto = $stmt->get_result();
+        //$resulto = $conn->query($sqlo);
         // Check if there are any products
         if ($resulto->num_rows > 0) {
             while ($rowo = $resulto->fetch_assoc()) {
