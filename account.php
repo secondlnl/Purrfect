@@ -179,12 +179,7 @@ if ($BUTTON_PRESSED) {
     <div id="orderstable">
         <h1>Orders</h1>
         <?php
-        $sqlo = "SELECT Date, Products FROM orders WHERE UserID = ? ORDER BY Date DESC";
-        $stmt = $conn->prepare($sqlo);
-        $stmt->bind_param("i", $_SESSION["id"]); // Ensures UserID is treated as an integer
-        $stmt->execute();
-        $resulto = $stmt->get_result();
-        //$resulto = $conn->query($sqlo);
+        $resulto = QueryMeThis("SELECT Date, Products FROM orders WHERE UserID = ? ORDER BY Date DESC", ["i", "" . $_SESSION["id"]]);
         // Check if there are any products
         if ($resulto->num_rows > 0) {
             while ($rowo = $resulto->fetch_assoc()) {
@@ -202,8 +197,7 @@ if ($BUTTON_PRESSED) {
         ?>
     </div>
     <?php
-    $query4 = "SELECT Seller FROM Accounts WHERE ID = " . $_SESSION["id"] . ";";
-    $r4 = $conn->query($query4);
+    $r4 = QueryMeThis("SELECT Seller FROM Accounts WHERE ID = ?", ["i", "" . $_SESSION["id"]]);
     if ($r4->num_rows > 0) {
         while ($row4 = $r4->fetch_assoc()) {
             if ($row4["Seller"] == 1)
