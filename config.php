@@ -11,17 +11,42 @@ $conn = new mysqli(_SERVERADDRESS, _SERVERUSER, _SERVERPASS, _DBNAME);
 mysqli_set_charset($conn, "latin1");
 $conn->query("USE " . _DBNAME);
 
-// function querymethis($query, ...$params)
-// {
-//   $query = strtolower($query); // decapitelise the query
-//   if (!empty($query)) {
-//     if (substr_count($query, "select") == 1) {
-//     }else if (substr_count($query, "insert") == 1) {
-//     } else if (substr_count($query, "update") == 1) {
-//     }
-//   }
-// }
+function QueryMeThis(string $str = "", array $param = [] )
+{
+  global $conn;
+  if (empty(trim($str)) || !is_array($param)) {
+    // Empty parameters
+    die("Not afficent function parameters");
+  }
+  if (substr_count($str, "?") <= 0) {
+    // No ? in query
+    die("No params in query string.");
+  }
 
+  $i = 0;
+  $types = "";
+  $strings = "";
+  while ($i < count($param)) {
+    echo "<script>console.log( 'wat: ".$param[$i]."');</script>";
+    echo "<script>console.log(".count($param).");</script>\n";
+    if (strlen("".$param[$i]) >= 0) {
+      $types .= $param[$i];
+      $strings .= "" . $param[$i + 1] . ", ";
+      if (($i + 1) == count($param)) break;
+      $i = $i + 2;
+    } else $i++;
+  }
+  $strings = rtrim($strings, ",");
+  if (empty($strings) || empty($types)){
+    die("<p>Arguments could not be found or parsed</p>");
+  }
+
+  // echo ("T:" . $types . "S: " . $strings . "");
+  $prprd = $conn->prepare($str);
+  $prprd->bind_param($types,$strings);
+  $prprd->execute();
+  return $prprd->get_result();
+}
 
 
 
