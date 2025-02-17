@@ -141,18 +141,20 @@ if ($BUTTON_PRESSED) {
     // Fetch the profile picture path from the database
     $stmt = $conn->prepare("SELECT img FROM accounts WHERE id = ?");
     $stmt->bind_param("i", $_SESSION["id"]);
-    $stmt->execute();
-    $stmt->bind_result($profilePicture);
-    $stmt->fetch();
+    if ($stmt->execute()) {
+        $picture = true;
+        $stmt->bind_result($profilePicture);
+        $stmt->fetch();
+    }
     $stmt->close();
 
 
 
     // Display the image
-    if ($profilePicture) {
-        echo "<img src='$profilePicture' alt='pfp' width='100' height='100'>";
+    if ($picture) {
+        echo "<img src=" . $profilePicture . " alt='pfp' width='100' height='100'>";
     } else {
-        echo "No profile picture found.";
+        echo "<img src='' alt='No profile picture found.' width='100' height='100'>";
     }
     ?>
 
@@ -160,7 +162,7 @@ if ($BUTTON_PRESSED) {
         <fieldset>
             <legend>Upload profile</legend>
             <label for="profile_pic">Upload Profile Picture:</label>
-            <input type="file" name="profile_pic" id="profile_pic" accept=".png, .jpg, .jpeg">
+            <input type="file" name="profile_pic" id="profile_pic" accept=".png, .jpg, .jpeg" required>
             <br>
             <input type="submit" value="Upload">
         </fieldset>
