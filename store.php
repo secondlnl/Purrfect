@@ -46,16 +46,14 @@ if ($result->num_rows > 0) {
             echo "<h3 class='title'>" . $products["name"] . "</h3>";
             // Get all the products the user has purchased
             // Get the purchased items 
-            $query2 = "SELECT Products FROM orders WHERE UserID = " . $_SESSION["id"] . ";";
-            $result2 = $conn->query($query2);
+            $result2 = QueryMeThis("SELECT Products FROM orders WHERE UserID = ?;",["i","". $_SESSION["id"]]);
             if ($result2->num_rows > 0) {
                 while ($orders = $result2->fetch_assoc()) {
                     $lworders = trim(strtolower($orders["Products"]));
                     $exorders = explode(":", $lworders);
                     foreach ($exorders as $k => $e) {
                         if (substr_count($e, $lwname) >= 1) { // Products $e have been bought
-                            $query3 = "SELECT Rating, RatedBy FROM products WHERE ID = " . $products["ID"] . ";";
-                            $result3 = $conn->query($query3);
+                            $result3 = QueryMeThis("SELECT Rating, RatedBy FROM products WHERE ID = ?;",["i","". $_products["ID"]]);
                             if ($result3->num_rows > 0) {
                                 while ($rating = $result3->fetch_assoc()) {
                                     if ($rating["Rating"] != 0 && empty($rating["RatedBy"]) === false) {
@@ -79,8 +77,7 @@ if ($result->num_rows > 0) {
             // THIS WORKS OK DONT FIX
             echo "<p class='des'><strong>Description:</strong><br><em> " . htmlspecialchars(htmlentities($products["description"])) . "</em></p>";
             echo "<p class='price'>Price: " . $products["price"] . "kr</p>";
-            $comment = "SELECT Name, Text, Date FROM comments WHERE PID =" . $products["ID"];
-            $ctable = $conn->query($comment);
+            $ctable = QueryMeThis("SELECT Name, Text, Date FROM comments WHERE PID = ?;",["i","".$_products["ID"]]);
             // Check if there are any products
             if ($ctable->num_rows > 0) {
                 // Output data of each row
