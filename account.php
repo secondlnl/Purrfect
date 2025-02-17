@@ -204,7 +204,6 @@ if ($BUTTON_PRESSED) {
                 echo "<button onmousedown='popuptoggle();'>Your Products</button>";
         }
     }
-    // <button></button> <button></button> <button onmousedown='popuptoggle();'>Your Products</button>
     ?>
 </div>
 
