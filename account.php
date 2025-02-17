@@ -29,31 +29,32 @@ if ($BUTTON_PRESSED) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script>
-        window.onload = function() {
-            product("show");
-        };
-
+        if (window.newresp == undefined || window.req == undefined || window.prow == undefined) {
+            window.prow = "";
+            window.newresp = "";
+            window.req = new XMLHttpRequest();
+        }
         async function product(opt, id = null) {
-            const req = new XMLHttpRequest();
             req.open("POST", "productcess.php", true);
             req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             req.onreadystatechange = () => {
                 // Call a function when the state changes.
                 if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
                     // Request finished. Do processing here.
-                    const resp = req.responseText.trim()
-                    if (resp) {
-                        prow = JSON.parse(req.responseText);
+                    newresp = JSON.parse(req.responseText);
+                    if (JSON.stringify(newresp) !== JSON.stringify(prow)) {
+                        prow = newresp;
                         console.log(prow);
-                        document.getElementById("me").innerHTML = "";
+                        let html = "";
                         prow.forEach(e => {
-                            document.getElementById("me").innerHTML += `
-                    <tr id="products">
-                    <td>${e.name}</td>
-                    <td>${e.price}</td>
-                    <td>${e.description}</td>
-                    <td><button id="Del" class="cartremove" onclick="product('del',${e.id});">Delete</button></td> <td><button></button></td>`;
+                            html += `
+                            <tr id="products">
+                            <td>${e.name}</td>
+                            <td>${e.price}</td>
+                            <td>${e.description}</td>
+                            <td><button id="Del" class="cartremove" onclick="product('del',${e.id});">Delete</button></td> <td><button></button></td>`;
                         });
+                        document.getElementById("me").innerHTML = html;
                     };
                 };
             };
