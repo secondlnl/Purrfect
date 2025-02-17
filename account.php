@@ -91,6 +91,7 @@ if ($BUTTON_PRESSED) {
             var x = document.getElementById("bg");
             if (x.style.display === "none") {
                 x.style.display = "block";
+                product("show");
             } else
                 x.style.display = "none";
         }
@@ -106,7 +107,7 @@ if ($BUTTON_PRESSED) {
     </script>
 </head>
 <title>Purrfect - Account</title>
-<div id="bg" style="display: block;">
+<div id="bg" style="display: none;">
 
     <div id="popup">
         <h2>Your products</h2>
