@@ -23,7 +23,8 @@ if (isset($un) && isset($_POST["un"])) {
 }
 
 if ($un_error != 1 && $pw_error != 1 && !empty($un) && !empty($pw) && isset($_POST["un"]) && isset($_POST["pw"])) {
-    $prepared = mysqli_prepare($conn, "SELECT ID,Username,Password FROM Accounts WHERE Username='$un'");
+    $prepared = mysqli_prepare($conn, "SELECT ID,Username,Password FROM Accounts WHERE Username=?");
+    $prepared->bind_param("s",$un);
     if (mysqli_stmt_execute($prepared) == true) { // true == success
         mysqli_stmt_store_result($prepared);
         if (mysqli_stmt_num_rows($prepared) == 1) {
