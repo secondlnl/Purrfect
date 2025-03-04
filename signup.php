@@ -23,8 +23,8 @@ if (isset($_POST["un"]) && isset($_POST["pw"]) && isset($_POST["conpw"])) {
     $seller = 0;
     if (!empty($_POST["seller"]) && $_POST["seller"] == "on") {
       $seller = 1;
-    } 
-      mysqli_stmt_bind_param($prepared, "ssi", $un, $newpw, $seller);
+    }
+    mysqli_stmt_bind_param($prepared, "ssi", $un, $newpw, $seller);
     mysqli_stmt_execute($prepared);
     mysqli_stmt_close($prepared);
     header("location: index.php");
@@ -34,17 +34,19 @@ if (isset($_POST["un"]) && isset($_POST["pw"]) && isset($_POST["conpw"])) {
 // Close connection
 mysqli_close($conn);
 ?>
-<title>Purrfect - Signup</title>
-<h1>Signup time!!! &#x2665 </h1>
-<form method="post" id="grid">
-  <label for="un">Username:</label>
-  <input type="text" name="un" required>
-  <?php if ($un_error == 1) echo ("<p id=error>Username $un is taken, sorry pick another one</p>"); ?>
-  <label for="pw">Password:</label>
-  <input type="password" name="pw" required minlength="6">
-  <label for="conpw">Confirm password:</label>
-  <input type="password" name="conpw" required minlength="6">
-  <label for="sellercheck">Want to able to sell:</label>
-  <input type="checkbox" name="seller" id="sellercheck">
-  <input type="submit" name="sgnp" value="Signup">
-</form>
+<main class="uppages">
+  <title>Purrfect - Signup</title>
+  <h1>Signup</h1>
+  <form method="post" id="grid">
+    <label for="un">Username:</label>
+    <input type="text" name="un" required>
+    <?php if ($un_error == 1) echo ("<p id=error>Username $un is taken, sorry pick another one</p>"); ?>
+    <label for="pw">Password:</label>
+    <input type="password" name="pw" required minlength="6">
+    <label for="conpw">Confirm password:</label>
+    <input type="password" name="conpw" required minlength="6">
+    <label for="sellercheck">Want to able to sell:</label>
+    <input type="checkbox" name="seller" id="sellercheck">
+    <input type="submit" name="sgnp" value="Signup">
+  </form>
+</main>
