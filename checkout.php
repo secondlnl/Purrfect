@@ -23,7 +23,7 @@
           timeLeft--;
           setTimeout(updateTimer, 1000);
         } else {
-          timer.textContent = "right now!😸";
+          timer.textContent = "right now!";
           ah.classList.toggle("done");
         }
       }
@@ -38,7 +38,7 @@
       <div id="box">📦</div>
       <p>Your products are being delivered <span id="timer"></span></p>
       <form method="post" action="clear2.php">
-        <button type="submit" class="down">OPEN THE DOOR!</button>
+        <button type="submit" class="down">Okay</button>
       </form>
     </div>
 
@@ -50,19 +50,11 @@
 
 
   echo "<div style='
-      border: 3px #000 solid !important;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-  text-align: left !important;
-  float: unset !important;
-  font-size: unset !important;
-  width: unset !important;
-  text-align: center;
-  float: right;
-  color: black;
-  font-size: smaller;
+     
+  float: unset;
   padding: 5pt;
-  background-color: white;'>";
+  padding-left: 10px ;
+  margin: 5pt;'>";
   echo "<h2>Shopping Cart</h2>";
   echo "<div id='outer'>";
   echo "<div><strong>Name</strong></div>";
