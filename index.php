@@ -24,7 +24,7 @@ if (isset($un) && isset($_POST["un"])) {
 
 if ($un_error != 1 && $pw_error != 1 && !empty($un) && !empty($pw) && isset($_POST["un"]) && isset($_POST["pw"])) {
     $prepared = mysqli_prepare($conn, "SELECT ID,Username,Password FROM Accounts WHERE Username=?");
-    $prepared->bind_param("s",$un);
+    $prepared->bind_param("s", $un);
     if (mysqli_stmt_execute($prepared) == true) { // true == success
         mysqli_stmt_store_result($prepared);
         if (mysqli_stmt_num_rows($prepared) == 1) {
@@ -36,7 +36,7 @@ if ($un_error != 1 && $pw_error != 1 && !empty($un) && !empty($pw) && isset($_PO
                     $_SESSION["id"] = $id;
                     $_SESSION["un"] = $un;
                     // redirect to profile
-                    header("location: account.php");
+                    header("location: store.php");
                 } else {
                     $pw_error = 1;
                 }
@@ -49,21 +49,23 @@ if ($un_error != 1 && $pw_error != 1 && !empty($un) && !empty($pw) && isset($_PO
 // Close connection
 mysqli_close($conn);
 ?>
-<title>Purrfect</title>
-<h1 id="title">Hi and welcome to "Purrfect"</h1>
-<h2>-- Your one stop shop for everything* cats! <em>meow</em> </h2>
-<h3 id="favourtext"><sub><em>* Not everything</em><sub></h3>
-<form method="post" id="grid">
-    <label for="un">Username:</label>
-    <input type="text" name="un" required placeholder="Username">
-    <?php if ($un_error == 1) {
-        echo ("<p id=error>Username is not found, maybe sign up &#x2665</p>");
-    } ?>
-    <label for="pw">Password:</label>
-    <input type="password" name="pw" required minlength="6" placeholder="Password">
-    <?php if ($pw_error == 1) {
-        echo ("<p id=error>Password does not match $un </p>");
-    } ?>
-    <button type="submit" name="lgin">Login</button>
-</form>
-<p>Does it not work? Maybe an account is in order, <a href="signup.php">sign up here!!! &#x2665</a> </p>
+<main class="uppages">
+    <title>Purrfect</title>
+    <h2>Your one stop shop for everything about cats</h2>
+    <br>
+    <br>
+    <form method="post" id="grid">
+        <label for="un">Username:</label>
+        <input type="text" name="un" required placeholder="Username">
+        <?php if ($un_error == 1) {
+            echo ("<p id=error>Username is not found, maybe sign up</p>");
+        } ?>
+        <label for="pw">Password:</label>
+        <input type="password" name="pw" required minlength="6" placeholder="Password">
+        <?php if ($pw_error == 1) {
+            echo ("<p id=error>Password does not match $un </p>");
+        } ?>
+        <button type="submit" name="lgin">Login</button>
+    </form>
+    <p>Does it not work? Maybe you need an account, <a href="signup.php">sign up here</a> </p>
+</main>
