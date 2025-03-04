@@ -11,7 +11,7 @@ $conn = new mysqli(_SERVERADDRESS, _SERVERUSER, _SERVERPASS, _DBNAME);
 mysqli_set_charset($conn, "latin1");
 $conn->query("USE " . _DBNAME);
 
-function QueryMeThis(string $str = "", array $param = [] )
+function QueryMeThis(string $str = "", array $param = [])
 {
   global $conn;
   if (empty(trim($str)) || !is_array($param)) {
@@ -27,9 +27,9 @@ function QueryMeThis(string $str = "", array $param = [] )
   $types = "";
   $strings = "";
   while ($i < count($param)) {
-    echo "<script>console.log( 'wat: ".$param[$i]."');</script>";
-    echo "<script>console.log(".count($param).");</script>\n";
-    if (strlen("".$param[$i]) >= 0) {
+    echo "<script>console.log( 'wat: " . $param[$i] . "');</script>";
+    echo "<script>console.log(" . count($param) . ");</script>\n";
+    if (strlen("" . $param[$i]) >= 0) {
       $types .= $param[$i];
       $strings .= "" . $param[$i + 1] . ", ";
       if (($i + 1) == count($param)) break;
@@ -37,17 +37,26 @@ function QueryMeThis(string $str = "", array $param = [] )
     } else $i++;
   }
   $strings = rtrim($strings, ",");
-  if (empty($strings) || empty($types)){
+  if (empty($strings) || empty($types)) {
     die("<p>Arguments could not be found or parsed</p>");
   }
 
   // echo ("T:" . $types . "S: " . $strings . "");
   $prprd = $conn->prepare($str);
-  $prprd->bind_param($types,$strings);
+  $prprd->bind_param($types, $strings);
   $prprd->execute();
   return $prprd->get_result();
 }
+/*
+  Functions for store
+  */
 
+function ProductCard() {
+
+
+  
+}
+function ProductRating() {}
 
 
 // create a prepared statement
