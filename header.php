@@ -12,17 +12,13 @@
   <link rel="icon" type="image/gif" href="favicon.gif">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <div id=header>
-   <img src="logo.svg" id="logo" alt="Website icon">
-   <!-- <img src="paw_print.webp" id="mlogo" alt="Website icon"> -->
-<!--
-Paw Print webp    
-Mutant Standard emoji are licensed CC BY-NC-SA 4.0 International.     
-mutant.tech
--->
+    <div style="display: flex; flex-direction:row; text-align:center;">
+    <img src="logo.svg" id="logo" alt="Website icon"> <h1 style="text-align: center !important;margin: auto">Purrfect</h1>
+    </div>
     <nav id="nav">
       <form id="search-form" method="get" action=search.php>
         <input type="text" id="search" name="search" placeholder="Search for a product" required>
-        <div id="thing"><button type="submit" aria-label="search" id="search"><i class="material-icons">search</i></button><label for="search">Search</label></div>
+        <div id="thing"><button type="submit" aria-label="search" id="search"><i class="material-icons">search</i></button><label for="search" style="margin-left: 0px;margin-top: 0px;">Search</label></div>
       </form>
       <div id="thing"><a href=about.php aria-label="about" id="about" name="about"><i class="material-icons">&#xe88e;</i></a><label for="about">About</label></div>
       <?php
@@ -37,11 +33,11 @@ mutant.tech
     </nav>
   </div>
 
-<!-- <body> -->
+  <!-- <body> -->
   <!-- <div class="header"> -->
-    <!-- Header -->
-    <!-- <div class="nav"> -->
-      <!-- Navigation -->
-    <!-- </div>
+  <!-- Header -->
+  <!-- <div class="nav"> -->
+  <!-- Navigation -->
+  <!-- </div>
   </div>
   <main> -->
