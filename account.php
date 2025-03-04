@@ -135,78 +135,79 @@ if ($BUTTON_PRESSED) {
         <button onmousedown="popuptoggle();" class="cartremove">Close</button>
     </div>
 </div>
-<h1> Account </h1>
-<div id="leftaccountpage">
-    <h3>Name: <?php echo $_SESSION["un"] ?></h3>
-    <?php
-    // Fetch the profile picture path from the database
-    $stmt = $conn->prepare("SELECT img FROM accounts WHERE id = ?");
-    $stmt->bind_param("i", $_SESSION["id"]);
-    if ($stmt->execute()) {
-        $picture = true;
-        $stmt->bind_result($profilePicture);
-        $stmt->fetch();
-    }
-    $stmt->close();
-
-
-
-    // Display the image
-    if ($picture) {
-        echo "<img src=" . $profilePicture . " alt='pfp' width='100' height='100'>";
-    } else {
-        echo "<img src='' alt='No profile picture found.' width='100' height='100'>";
-    }
-    ?>
-
-    <form action="Upload.php" method="post" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Upload profile</legend>
-            <label for="profile_pic">Upload Profile Picture:</label>
-            <input type="file" name="profile_pic" id="profile_pic" accept=".png, .jpg, .jpeg" required>
-            <br>
-            <input type="submit" value="Upload">
-        </fieldset>
-    </form>
-
-
-    <form method="post">
-        <input type="submit" name="butt" value="Reset your Password">
-        <input type="submit" name="butt" value="Sign out">
-    </form>
-</div>
-<div id="rightaccountpage">
-    <div id="orderstable">
-        <h1>Orders</h1>
+<main>
+    <h1> Account </h1>
+    <div id="leftaccountpage">
+        <h3>Name: <?php echo $_SESSION["un"] ?></h3>
         <?php
-        $resulto = QueryMeThis("SELECT Date, Products FROM orders WHERE UserID = ? ORDER BY Date DESC", ["i", "" . $_SESSION["id"]]);
-        // Check if there are any products
-        if ($resulto->num_rows > 0) {
-            while ($rowo = $resulto->fetch_assoc()) {
-                echo    "<details><summary>" . $rowo["Date"] . "</summary>";
-                $rplc = str_replace(":", " - ", $rowo["Products"]);
-                $token = strtok($rplc, "\\");
-                while ($token !== false) {
-                    echo "<ul><li>$token kr</li></ul>";
-                    $token = strtok("\\");
+        // Fetch the profile picture path from the database
+        $stmt = $conn->prepare("SELECT img FROM accounts WHERE id = ?");
+        $stmt->bind_param("i", $_SESSION["id"]);
+        if ($stmt->execute()) {
+            $picture = true;
+            $stmt->bind_result($profilePicture);
+            $stmt->fetch();
+        }
+        $stmt->close();
+
+
+
+        // Display the image
+        if ($picture) {
+            echo "<img src=" . $profilePicture . " alt='pfp' width='100' height='100'>";
+        } else {
+            echo "<img src='' alt='No profile picture found.' width='100' height='100'>";
+        }
+        ?>
+
+        <form action="Upload.php" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Upload profile</legend>
+                <label for="profile_pic">Upload Profile Picture:</label>
+                <input type="file" name="profile_pic" id="profile_pic" accept=".png, .jpg, .jpeg" required>
+                <br>
+                <input type="submit" value="Upload">
+            </fieldset>
+        </form>
+
+
+        <form method="post">
+            <input type="submit" name="butt" value="Reset your Password">
+            <input type="submit" name="butt" value="Sign out">
+        </form>
+    </div>
+    <div id="rightaccountpage">
+        <div id="orderstable">
+            <h1>Orders</h1>
+            <?php
+            $resulto = QueryMeThis("SELECT Date, Products FROM orders WHERE UserID = ? ORDER BY OrderID DESC, Date DESC", ["i", "" . $_SESSION["id"]]);
+            // Check if there are any products
+            if ($resulto->num_rows > 0) {
+                while ($rowo = $resulto->fetch_assoc()) {
+                    echo    "<details><summary>" . $rowo["Date"] . "</summary>";
+                    $rplc = str_replace(":", " - ", $rowo["Products"]);
+                    $token = strtok($rplc, "\\");
+                    while ($token !== false) {
+                        echo "<ul><li>$token kr</li></ul>";
+                        $token = strtok("\\");
+                    }
+                    echo "</details>";
                 }
-                echo "</details>";
+            }
+            // Close the connection
+            ?>
+        </div>
+        <?php
+        $r4 = QueryMeThis("SELECT Seller FROM Accounts WHERE ID = ?", ["i", "" . $_SESSION["id"]]);
+        if ($r4->num_rows > 0) {
+            while ($row4 = $r4->fetch_assoc()) {
+                if ($row4["Seller"] == 1)
+                    echo "<button onmousedown='popuptoggle();'>Your Products</button>";
             }
         }
-        // Close the connection
         ?>
     </div>
-    <?php
-    $r4 = QueryMeThis("SELECT Seller FROM Accounts WHERE ID = ?", ["i", "" . $_SESSION["id"]]);
-    if ($r4->num_rows > 0) {
-        while ($row4 = $r4->fetch_assoc()) {
-            if ($row4["Seller"] == 1)
-                echo "<button onmousedown='popuptoggle();'>Your Products</button>";
-        }
-    }
-    ?>
-</div>
-
+</main>
 
 
 
