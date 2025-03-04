@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 	$prepared = mysqli_prepare($conn, "truncate purchases");
 	mysqli_stmt_execute($prepared);
-	header("location: account.php");
+	header("location: store.php");
 	mysqli_stmt_close($prepared);
 	mysqli_close($conn);
 }
