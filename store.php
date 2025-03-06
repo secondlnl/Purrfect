@@ -3,6 +3,61 @@ include "config.php";
 include "header.php";
 ?>
 <title>Purrfect - store</title> <!-- Title of this shit show-->
+<script>
+    if (window.req == undefined || window.oldresp == undefined || window.newresp == undefined) {
+        window.req = new XMLHttpRequest();
+        window.oldresp = "";
+        window.newresp = "";
+    }
+
+    async function savecomment(pid) {
+        console.log(`ahh: ${pid}`);
+        req.open("POST", "commentscess.php", true);
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.onreadystatechange = () => {
+            // Call a function when the state changes.
+            if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
+                // Request finished. Do processing here.
+                // Request finished. Do processing here.
+                newresp = JSON.parse(req.responseText);
+                if (JSON.stringify(newresp) !== JSON.stringify(oldresp)) {
+                    oldresp = newresp;
+                    // console.log(prow);
+                    let html = "";
+                    newresp.forEach(e => {
+                        html = `
+<div class="comment" id="comment-${e.id}"><p><strong>${e.name}</strong>${e.date}</p><p>${e.text}</p><button class="cartremove" name="delete" onclick="deletecomment(${e.id});" style="float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;"><i class="material-icons">delete_forever</i></button></div>
+                            `
+                    });
+                    document.getElementById(`details-${pid}`).insertAdjacentHTML("afterbegin", html);
+
+                }
+            }
+        }
+        const comment = document.getElementById(`savecomment-${pid}`).value;
+        if (!comment && comment.length === 0) {
+            document.getElementById(`error-${pid}`).innerHTML = "error please input some text";
+            exit;
+        } else {
+            console.log(`${comment}`);
+            document.getElementById(`error-${pid}`).innerHTML = "";
+            document.getElementById(`savecomment-${pid}`).value = "";
+            req.send(`PID=${pid}&comment=${comment}`);
+        }
+    }
+    async function deletecomment(id) {
+        req.open("POST", "deletecomment.php", true);
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.onreadystatechange = () => {
+            // Call a function when the state changes.
+            if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
+                // Request finished. Do processing here.
+                document.getElementById(`comment-${id}`).remove();
+            }
+        }
+        req.send(`delete=${id}`);
+    }
+</script>
 <main class="store">
     <?php
     if (!isset($_SESSION["id"])) {
@@ -87,16 +142,17 @@ include "header.php";
                 // Check if there are any products
                 if ($ctable->num_rows > 0) {
                     // Output data of each row
-                    echo "<div class='comments'><details class='decomments'>";
+                    echo "<div class='comments'><details id='details-" . $products["ID"] . "' class='decomments'>";
                     while ($comment = $ctable->fetch_assoc()) {
-                        echo "<div class='comment'><p><strong>" . htmlspecialchars($comment["Name"]) . "</strong> " . $comment["Date"] . "</p><p>" . htmlspecialchars($comment["Text"]) . "</p><form action='deletecomment.php' method='post'><button class='cartremove' name='delete' value='" . $comment["ID"] . "' style='float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;'><i class='material-icons'>delete_forever</i></button></form></div>";
+                        echo "<div class='comment' id='comment-" . $comment["ID"] . "'><p><strong>" . htmlspecialchars($comment["Name"]) . "</strong> " . $comment["Date"] . "</p><p>" . htmlspecialchars($comment["Text"]) . "</p><button class='cartremove' name='delete' onclick='deletecomment(" . $comment["ID"] . ");' style='float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;'><i class='material-icons'>delete_forever</i></button></div>";
                     }
-                    echo "<summary>Comments</summary><form action='commentscess.php' method='post'><label for='comment'>Have a say:</label><textarea required id='comment' name='comment' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button type='submit' value=" . $products['ID'] . " name='PID'>Save comment</button></form></details>";
+                    echo "<summary>Comments</summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID'>Save comment</button></div></details>";
+                    echo "<p id='error-" . $products["ID"] . "' class='error'></p>";
                     echo "</div>";
                 } else { // If no comment exists 
-                    echo "<div class='comments'><details class='decomments empty' open='true' disabled='true' >";
-                    echo "<summary>Comments</summary><form action='commentscess.php' method='post'><textarea id='comment' name='comment' rows='5' cols='33' placeholder='What say you about this product?' required></textarea><button type='submit' value=" . $products['ID'] . " name='PID'>Save comment</button></form></details>";
-                    echo "<summary style='list-style:none;'></summary></details></div>";
+                    echo "<div class='comments'><details id='details-" . $products["ID"] . "' class='decomments empty' open='true' disabled='true' >";
+                    echo "<summary></summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID'>Save comment</button></div></details>";
+                    echo "<summary style='list-style:none;'></summary></details><p id='error-" . $products["ID"] . "' class='error'></p></div>";
                 }
                 echo "<form method='post' action='storeprocessor.php'>";
                 echo "<button type='submit' value=" . $products['ID'] . " name='buy' class='cartadd'>Add to Cart</button>";

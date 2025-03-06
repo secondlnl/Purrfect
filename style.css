@@ -134,7 +134,7 @@ div#box {
 
     .comments {
       font-size: var(--step--1);
-      form {
+      div.area {
         font: inherit;
         textarea {
           font: inherit;
@@ -361,7 +361,7 @@ form#grid {
   display: grid;
   max-width: min-content;
 }
-p#Error {
+p#Error, .error {
   color: var(--darkred);
   font-weight: bold;
   font-size: large;
