@@ -27,8 +27,8 @@ function QueryMeThis(string $str = "", array $param = [])
   $types = "";
   $strings = "";
   while ($i < count($param)) {
-    echo "<script>console.log( 'wat: " . $param[$i] . "');</script>";
-    echo "<script>console.log(" . count($param) . ");</script>\n";
+    // echo "<script>console.log( 'wat: " . $param[$i] . "');</script>";
+    // echo "<script>console.log(" . count($param) . ");</script>\n";
     if (strlen("" . $param[$i]) >= 0) {
       $types .= $param[$i];
       $strings .= "" . $param[$i + 1] . ", ";
