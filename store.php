@@ -4,10 +4,59 @@ include "header.php";
 ?>
 <title>Purrfect - store</title> <!-- Title of this shit show-->
 <script>
-    if (window.req == undefined || window.oldresp == undefined || window.newresp == undefined) {
+    if (window.req == undefined || window.oldresp == undefined || window.newresp == undefined || window.cart == undefined) {
         window.req = new XMLHttpRequest();
         window.oldresp = "";
         window.newresp = "";
+        window.cart = 0;
+    }
+    async function BuyBoughtBought(Product) {
+
+        if (window.cart == 0) {
+            const maintag = document.getElementsByTagName("main")[0];
+            window.cart = 1;
+            const cart = `
+            <aside>
+            <h2>Shopping Cart</h2>
+            <form method='post' action='clear.php'>
+            <button type='submit' class='cartremove'>Clear</button></form>
+            <div id='cart'>
+            <div class='outer'>
+            <div><strong>Name</strong></div>
+            <div><strong>Price (kr)</strong></div>
+            </div>
+            </div>
+            <form method='post' action='checkout.php'>
+            <button type='submit'>Checkout</button></form>
+            </aside>`;
+            maintag.insertAdjacentHTML("afterbegin", cart);
+        }
+
+        console.log(`buy: ${Product}`);
+        req.open("POST", "storeprocessor.php", true);
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.onreadystatechange = () => {
+            // Call a function when the state changes.
+            if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
+                // Request finished. Do processing here.
+                // Request finished. Do processing here.
+                newresp = JSON.parse(req.responseText);
+                if (JSON.stringify(newresp) !== JSON.stringify(oldresp)) {
+                    oldresp = newresp;
+                    // console.log(prow);
+                    let html = "";
+                    newresp.forEach(e => {
+                        html += ` <div class='outer'>
+                     <div>${e.name}</div>
+                     <div>${e.price}</div>
+                     </div>`
+                    });
+                    //document.getElementById(`cart`).insertAdjacentHTML("afterend", html);
+                    document.getElementById(`cart`).innerHTML = html;
+                }
+            }
+        }
+        req.send(`buy=${Product}`);
     }
 
     async function savecomment(pid) {
@@ -58,36 +107,34 @@ include "header.php";
         req.send(`delete=${id}`);
     }
 </script>
-<main class="store">
+<main class="store" id="store">
     <?php
+    if (!isset($_SESSION["loggedin"])) header("location: index.php");
     if (!isset($_SESSION["id"])) {
         header("location: index.php");
     }
-    $sql = "SELECT * FROM purchases;";
-    $result = $conn->query($sql);
+    //$sql = "SELECT * FROM purchases;";
+    //$result = $conn->query($sql);
     // Check if there are any products
-    if ($result->num_rows > 0) {
-        echo "<aside>";
-        echo "<h2>Shopping Cart</h2>";
-        echo "<form method='post' action='clear.php'>";
-        echo "<button type='submit' class='cartremove'>Clear</button></form>";
+    // echo "<aside>";
+    // echo "<h2>Shopping Cart</h2>";
+    // echo "<form method='post' action='clear.php'>";
+    // echo "<button type='submit' class='cartremove'>Clear</button></form>";
 
-        echo "<div class='outer'>";
-        echo "<div><strong>Name</strong></div>";
-        echo "<div><strong>Price (kr)</strong></div>";
-        echo "</div>";
-        // Output data of each row
-        while ($row = $result->fetch_assoc()) {
-            // Display product as a receipt
-            echo "<div class='outer'>";
-            echo "<div>" . $row["Name"] . "</div>";
-            echo "<div>" . $row["Price"] . "</div>";
-            echo "</div>";
-        }
-        echo "<form method='post' action='checkout.php'>";
-        echo "<button type='submit'>Checkout</button></form></aside>";
-    }
-
+    // echo "<div class='outer'>";
+    // echo "<div><strong>Name</strong></div>";
+    // echo "<div><strong>Price (kr)</strong></div>";
+    // echo "</div>";
+    // // Output data of each row
+    // while ($row = $result->fetch_assoc()) {
+    //     // Display product as a receipt
+    //     echo "<div class='outer'>";
+    //     echo "<div>" . $row["Name"] . "</div>";
+    //     echo "<div>" . $row["Price"] . "</div>";
+    //     echo "</div>";
+    // }
+    // echo "<form method='post' action='checkout.php'>";
+    // echo "<button type='submit'>Checkout</button></form></aside>";
     ?>
     <div id="box">
 
@@ -154,9 +201,8 @@ include "header.php";
                     echo "<summary></summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID'>Save comment</button></div></details>";
                     echo "<summary style='list-style:none;'></summary></details><p id='error-" . $products["ID"] . "' class='error'></p></div>";
                 }
-                echo "<form method='post' action='storeprocessor.php'>";
-                echo "<button type='submit' value=" . $products['ID'] . " name='buy' class='cartadd'>Add to Cart</button>";
-                echo "</div> </form>";
+                echo "<button onclick='BuyBoughtBought(" . $products['ID'] . ")' class='cartadd'>Add to Cart</button>";
+                echo "</div>";
             }
         }
 
