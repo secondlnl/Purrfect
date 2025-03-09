@@ -78,7 +78,7 @@
       echo "<div>" . $row["Price"] . "</div>";
       echo "</div>";
     }
-    echo "<button onmousedown='popuptoggle(),updateTimer()'>Checkout</button></form>";
+    echo "<button onmousedown='popuptoggle(),setTimeout(updateTimer(),1000);'>Checkout</button></form>";
   } else {
     header("location: store.php");
   }
