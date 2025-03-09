@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     $butt = $_POST["butt"];
     $rt = 0;
     // C
-    $boughtquery = "Select Ratedby, Rating FROM products WHERE ID = " . $butt . ";";
+    $boughtquery = "Select Ratedby, Rating FROM Products WHERE ID = " . $butt . ";";
     $bresult = $conn->query($boughtquery);
     if ($bresult->num_rows > 0) {
         while ($b = $bresult->fetch_assoc()) {
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
         }
     }
     //
-    $prprd = mysqli_prepare($conn, "UPDATE products SET Rating = ?, Ratedby = ? WHERE ID = " . $butt . ";");
+    $prprd = mysqli_prepare($conn, "UPDATE Products SET Rating = ?, Ratedby = ? WHERE ID = " . $butt . ";");
     session_start();
 
     

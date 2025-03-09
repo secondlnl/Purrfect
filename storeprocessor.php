@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     {
         $p = 0;
         $n = "";
-        $showq = $conn->prepare("SELECT Name,Price FROM purchases;");
+        $showq = $conn->prepare("SELECT Name,Price FROM Purchases;");
         $showq->execute();
         $showq->bind_result($n, $p);
         $showq->store_result();
@@ -20,6 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
         echo json_encode($res);
         $showq->close();
     }
-    QueryMeThis("INSERT INTO purchases (name,price) SELECT name,price FROM products WHERE ID = ?", ["i", $_POST["buy"]]);
+    QueryMeThis("INSERT INTO purchases (name,price) SELECT name,price FROM Products WHERE ID = ?", ["i", $_POST["buy"]]);
     show($conn);
 }

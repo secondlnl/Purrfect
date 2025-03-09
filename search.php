@@ -6,7 +6,7 @@ include "config.php";
 $searchTerm = $_GET['search'] ?? '';
 
 // Prepare SQL query with prepared statements to prevent SQL injection
-$sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?";
+$sql = "SELECT * FROM Products WHERE name LIKE ? OR description LIKE ?";
 $stmt = $conn->prepare($sql);
 $param = "%" . $searchTerm . "%";
 $stmt->bind_param("ss", $param, $param);

@@ -141,7 +141,7 @@ if ($BUTTON_PRESSED) {
         <h3>Name: <?php echo $_SESSION["un"] ?></h3>
         <?php
         // Fetch the profile picture path from the database
-        $stmt = $conn->prepare("SELECT img FROM accounts WHERE id = ?");
+        $stmt = $conn->prepare("SELECT img FROM Accounts WHERE id = ?");
         $stmt->bind_param("i", $_SESSION["id"]);
         if ($stmt->execute()) {
             $picture = true;
@@ -180,7 +180,7 @@ if ($BUTTON_PRESSED) {
         <div id="orderstable">
             <h1>Orders</h1>
             <?php
-            $resulto = QueryMeThis("SELECT Date, Products FROM orders WHERE UserID = ? ORDER BY OrderID DESC, Date DESC", ["i", "" . $_SESSION["id"]]);
+            $resulto = QueryMeThis("SELECT Date, Products FROM Orders WHERE UserID = ? ORDER BY OrderID DESC, Date DESC", ["i", "" . $_SESSION["id"]]);
             // Check if there are any products
             if ($resulto->num_rows > 0) {
                 while ($rowo = $resulto->fetch_assoc()) {

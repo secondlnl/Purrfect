@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 	include "config.php";
 
 	//
-	$sql = "SELECT * FROM purchases;";
+	$sql = "SELECT * FROM Purchases;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		// Output data of each row

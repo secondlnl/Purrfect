@@ -22,7 +22,7 @@ if (isset($_POST["pw"]) && isset($_POST["conpw"])) {
                 mysqli_stmt_bind_result($prepared1,$hpw);
                 if (mysqli_stmt_fetch($prepared1) == true) { // if data fetched
                         if (trim(strtolower($pw)) === trim(strtolower($conpw)) && $pw_error != 1) { // passwords match and no error
-                            $prepared2 = mysqli_prepare($conn, "UPDATE accounts SET password=? WHERE id=?");
+                            $prepared2 = mysqli_prepare($conn, "UPDATE Accounts SET password=? WHERE id=?");
                             $newpw = password_hash($pw,"argon2i");
                             mysqli_stmt_bind_param($prepared2, "si",$newpw, $_SESSION["id"]);
                             mysqli_stmt_execute($prepared2);

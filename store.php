@@ -141,7 +141,7 @@ include "header.php";
         <?php
 
         $rated = [];
-        $sql = "SELECT ID, name, description, price FROM products";
+        $sql = "SELECT ID, name, description, price FROM Products";
         $result = $conn->query($sql);
         // Check if there are any products
         if ($result->num_rows > 0) {
@@ -153,14 +153,14 @@ include "header.php";
                 echo "<h3 class='title'>" . $products["name"] . "</h3>";
                 // Get all the products the user has purchased
                 // Get the purchased items 
-                $result2 = QueryMeThis("SELECT Products FROM orders WHERE UserID = ?;", ["i", "" . $_SESSION["id"]]);
+                $result2 = QueryMeThis("SELECT Products FROM Orders WHERE UserID = ?;", ["i", "" . $_SESSION["id"]]);
                 if ($result2->num_rows > 0) {
                     while ($orders = $result2->fetch_assoc()) {
                         $lworders = trim(strtolower($orders["Products"]));
                         $exorders = explode(":", $lworders);
                         foreach ($exorders as $k => $e) {
                             if (substr_count($e, $lwname) >= 1) { // Products $e have been bought
-                                $result3 = QueryMeThis("SELECT Rating FROM products WHERE ID = ?;", ["i", "" . $products["ID"]]);
+                                $result3 = QueryMeThis("SELECT Rating FROM Products WHERE ID = ?;", ["i", "" . $products["ID"]]);
                                 if ($result3->num_rows > 0) {
                                     while ($rating = $result3->fetch_assoc()) {
                                         if ($rating["Rating"] != 0 && !in_array($products["ID"], $rated)) {
@@ -185,7 +185,7 @@ include "header.php";
                 // THIS WORKS OK DONT FIX
                 echo "<p class='des'><strong>Description:</strong><br><em> " . htmlspecialchars($products["description"]) . "</em></p>";
                 echo "<p class='price'>Price: " . $products["price"] . "kr</p>";
-                $ctable = QueryMeThis("SELECT ID, Name, Text, Date FROM comments  WHERE PID = ? ORDER BY ID DESC, Date DESC;", ["i", "" . $products["ID"]]);
+                $ctable = QueryMeThis("SELECT ID, Name, Text, Date FROM Comments  WHERE PID = ? ORDER BY ID DESC, Date DESC;", ["i", "" . $products["ID"]]);
                 // Check if there are any products
                 if ($ctable->num_rows > 0) {
                     // Output data of each row

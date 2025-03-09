@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
         $d = "";
         $i = 0;
         $pid = $_POST["PID"];
-        $showq = QueryMeThis("SELECT ID, Name, Text, Date FROM comments WHERE PID = ? ORDER BY ID DESC, Date DESC LIMIT 1;", ["i", $pid]);
+        $showq = QueryMeThis("SELECT ID, Name, Text, Date FROM Comments WHERE PID = ? ORDER BY ID DESC, Date DESC LIMIT 1;", ["i", $pid]);
         if ($showq->num_rows > 0) {
             // Output data of each row
             while ($comment = $showq->fetch_assoc()) {
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             echo json_encode($res);
         }
     }
-    $prprd = mysqli_prepare($conn, "INSERT INTO comments (PID, Name,Text, Date) VALUES(?,?,?,?);");
+    $prprd = mysqli_prepare($conn, "INSERT INTO Comments (PID, Name,Text, Date) VALUES(?,?,?,?);");
     session_start();
     $pid = $_POST["PID"];
     $un = $_SESSION["un"];

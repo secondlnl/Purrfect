@@ -66,7 +66,7 @@
   echo "<div><strong>Name</strong></div>";
   echo "<div><strong>Price (kr)</strong></div>";
   echo "</div>";
-  $sql = "SELECT * FROM purchases;";
+  $sql = "SELECT * FROM Purchases;";
   $result = $conn->query($sql);
   // Check if there are any products
   if ($result->num_rows > 0) {
