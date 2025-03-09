@@ -1,6 +1,5 @@
 <?php
 include "config.php";
-$sql_1 = "INSERT INTO purchases (name,price) SELECT name,price FROM products WHERE ID =" . $_POST["buy"];
-$conn->query($sql_1);
+QueryMeThis("INSERT INTO purchases (name,price) SELECT name,price FROM products WHERE ID = ?",["i",$_POST["buy"]]);
 header("location: store.php");
 ?>
