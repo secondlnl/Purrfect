@@ -1,6 +1,6 @@
 <?php
 // Include a config which *go figure* configures the connections
-// XD
+// XD Henrik changed
 include "config.php";
 include "header.php";
 
