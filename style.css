@@ -196,7 +196,7 @@ aside {
     margin: 0pt;
     border-bottom: 3pt solid var(--black);
   }
-  #outer {
+  .outer {
     display: flex;
     justify-content: space-between;
   }
