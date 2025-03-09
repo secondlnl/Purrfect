@@ -29,6 +29,12 @@
       }
     }
   </script>
+  <style>
+    .outer {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
 </head>
 <html>
 
@@ -56,7 +62,7 @@
   padding-left: 10px ;
   margin: 5pt;'>";
   echo "<h2>Shopping Cart</h2>";
-  echo "<div id='outer'>";
+  echo "<div class='outer'>";
   echo "<div><strong>Name</strong></div>";
   echo "<div><strong>Price (kr)</strong></div>";
   echo "</div>";
@@ -67,7 +73,7 @@
     // Output data of each row
     while ($row = $result->fetch_assoc()) {
       // Display product as a receipt
-      echo "<div id='outer'>";
+      echo "<div class='outer'>";
       echo "<div>" . $row["Name"] . "</div>";
       echo "<div>" . $row["Price"] . "</div>";
       echo "</div>";
