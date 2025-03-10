@@ -20,6 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
         echo json_encode($res);
         $showq->close();
     }
-    QueryMeThis("INSERT INTO purchases (name,price) SELECT name,price FROM Products WHERE ID = ?", ["i", $_POST["buy"]]);
+    QueryMeThis("INSERT INTO Purchases (name,price) SELECT name,price FROM Products WHERE ID = ?", ["i", $_POST["buy"]]);
     show($conn);
 }
