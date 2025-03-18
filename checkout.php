@@ -14,7 +14,7 @@
     function updateTimer() {
       var ah = document.getElementById("popup");
       const timer = document.getElementById("timer");
-      if (ah.offsetParent !== null) {
+      if (getComputedStyle(ah).display !== "none") {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
         timer.textContent = `in ${minutes}:${seconds < 10 ? '0' : ''}${seconds} min`;
@@ -78,7 +78,7 @@
       echo "<div>" . $row["Price"] . "</div>";
       echo "</div>";
     }
-    echo "<button onmousedown='popuptoggle(),setTimeout(updateTimer,500);'>Checkout</button></form>";
+    echo "<button onmousedown='popuptoggle(), updateTimer()'>Checkout</button></form>";
   } else {
     header("location: store.php");
   }
