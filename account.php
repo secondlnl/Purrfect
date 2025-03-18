@@ -144,7 +144,6 @@ if ($BUTTON_PRESSED) {
         $stmt = $conn->prepare("SELECT img FROM Accounts WHERE id = ?");
         $stmt->bind_param("i", $_SESSION["id"]);
         if ($stmt->execute()) {
-            $picture = true;
             $stmt->bind_result($profilePicture);
             $stmt->fetch();
         }
@@ -153,10 +152,10 @@ if ($BUTTON_PRESSED) {
 
 
         // Display the image
-        if ($picture) {
-            echo "<img src=" . $profilePicture . " alt='pfp' width='100' height='100'>";
+        if (isset($profilePicture) && !empty(trim($profilePicture))) {
+            echo "<img src='" . $profilePicture . "' alt='pfp' width='100' height='100'>";
         } else {
-            echo "<img src='' alt='No profile picture found.' width='100' height='100'>";
+            echo "<img  alt='No profile picture found.' width='100' height='100'>";
         }
         ?>
 
