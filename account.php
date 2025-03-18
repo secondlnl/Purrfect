@@ -80,7 +80,7 @@ if ($BUTTON_PRESSED) {
                     description.value = "";
                 } else {
                     console.log("error be error");
-                    document.getElementById("Error").innerHTML = "Something wrong :C, fill in all the fields.";
+                    document.getElementById("Error").innerHTML = "Please, fill in all the fields.";
                 }
             } else if (opt.toLowerCase() === "show") {
                 req.send("opt=show");
