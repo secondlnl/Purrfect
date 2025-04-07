@@ -11,9 +11,12 @@ $stmt = $conn->prepare($sql);
 $param = "%" . $searchTerm . "%";
 $stmt->bind_param("ss", $param, $param);
 
+
 $stmt->execute();
 $result = $stmt->get_result();
-
+?>
+<main>
+<?php
 // Display search results
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
