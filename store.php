@@ -4,13 +4,27 @@ include "header.php";
 ?>
 <title>Purrfect - store</title> <!-- Title of this shit show-->
 <script>
-    if (window.req == undefined || window.oldresp == undefined || window.newresp == undefined || window.cart == undefined) {
     if (window.req == undefined || window.oldresp == undefined || window.newresp == undefined) {
         window.req = new XMLHttpRequest();
         window.oldresp = "";
         window.newresp = "";
     }
-    async function BuyBoughtBought(Product) {
+    // function deleteproduce(value){
+    //     console.debug(value);
+    // }
+    // function deleteable() {
+    //     const texte = document.querySelectorAll("div#product.outer");
+    //     texte.forEach(element => {
+    //         element.addEventListener("click", (event) => {
+    //             element.innerText = 0;
+    //             deleteproduce(element.getAttribute("value"));
+
+    //         });
+
+    //     });
+    //     console.debug(texte);
+
+    // }
 
     function CountSum() {
         const nums = document.querySelectorAll("div#price");
@@ -29,6 +43,7 @@ include "header.php";
     async function BuyBoughtBought(Product) {
         if (document.getElementById("cart") == null) {
             const maintag = document.getElementsByTagName("main")[0];
+            //window.cart = 1;
             const cart = `
             <aside>
             <h2>Shopping Cart</h2>
@@ -96,8 +111,11 @@ include "header.php";
                     let html = "";
                     newresp.forEach(e => {
                         html = `
-<div class="comment" id="comment-${e.id}"><p><strong>${e.name}</strong>${e.date}</p><p>${e.text}</p><button class="cartremove" name="delete" onclick="deletecomment(${e.id});" style="float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;"><i class="material-icons">delete_forever</i></button></div>
-                            `
+<div class="comment" id="comment-${e.id}">
+    <p><strong>${e.name}</strong>${e.date}</p>
+    <p>${e.text}</p><button class="cartremove" name="delete" onclick="deletecomment(${e.id});" style="float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;"><i class="material-icons">delete_forever</i></button>
+</div>
+`
                     });
                     document.getElementById(`details-${pid}`).insertAdjacentHTML("afterbegin", html);
 
