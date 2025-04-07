@@ -200,6 +200,10 @@ aside {
     display: flex;
     justify-content: space-between;
   }
+  /* div#product.outer:hover{
+    cursor: pointer;
+    text-decoration: line-through solid 0.2rem var(--darkred);
+  } */
 }
 /* #nav:first-of-type > div:last-child { order: -1; } */
 #header > #nav {
