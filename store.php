@@ -5,31 +5,51 @@ include "header.php";
 <title>Purrfect - store</title> <!-- Title of this shit show-->
 <script>
     if (window.req == undefined || window.oldresp == undefined || window.newresp == undefined || window.cart == undefined) {
+    if (window.req == undefined || window.oldresp == undefined || window.newresp == undefined) {
         window.req = new XMLHttpRequest();
         window.oldresp = "";
         window.newresp = "";
-        window.cart = 0;
     }
     async function BuyBoughtBought(Product) {
 
-        if (window.cart == 0) {
+    function CountSum() {
+        const nums = document.querySelectorAll("div#price");
+        sumsum = 0;
+        nums.forEach(element => {
+            if (isNaN(element.innerText) == false)
+                sumsum += parseInt(element.innerText);
+        });
+        console.debug(sumsum);
+        if (sumsum > 0) {
+            counter = document.getElementById("sum");
+            console.debug("" + document.getElementById("sum"));
+            counter.innerHTML = sumsum;
+        }
+    }
+    async function BuyBoughtBought(Product) {
+        if (document.getElementById("cart") == null) {
             const maintag = document.getElementsByTagName("main")[0];
-            window.cart = 1;
             const cart = `
             <aside>
             <h2>Shopping Cart</h2>
             <form method='post' action='clear.php'>
             <button type='submit' class='cartremove'>Clear</button></form>
-            <div id='cart'>
             <div class='outer'>
             <div><strong>Name</strong></div>
             <div><strong>Price (kr)</strong></div>
             </div>
+            <div id='cart'>
             </div>
-            <form method='post' action='checkout.php'>
-            <button type='submit'>Checkout</button></form>
-            </aside>`;
+            <div class='outer'>
+            <div><strong>Sum</strong></div>
+            <div><strong id='sum'></strong></div>
+            </div>
+<form method='post' action='checkout.php'>
+    <button type='submit'>Checkout</button>
+</form>
+</aside>`;
             maintag.insertAdjacentHTML("afterbegin", cart);
+            CountSum();
         }
 
         console.log(`buy: ${Product}`);
@@ -46,13 +66,14 @@ include "header.php";
                     // console.log(prow);
                     let html = "";
                     newresp.forEach(e => {
-                        html += ` <div class='outer'>
-                     <div>${e.name}</div>
-                     <div>${e.price}</div>
-                     </div>`
-                    });
+                        html += ` <div class='outer' id='product'> 
+    <div>${e.name}</div>
+    <div id='price'>${e.price}</div>
+</div>`
+                    }); // TODO: Add product value so deleteable works.
                     //document.getElementById(`cart`).insertAdjacentHTML("afterend", html);
                     document.getElementById(`cart`).innerHTML = html;
+                    CountSum();
                 }
             }
         }
@@ -113,28 +134,37 @@ include "header.php";
     if (!isset($_SESSION["id"])) {
         header("location: index.php");
     }
-    //$sql = "SELECT * FROM purchases;";
-    //$result = $conn->query($sql);
-    // Check if there are any products
-    // echo "<aside>";
-    // echo "<h2>Shopping Cart</h2>";
-    // echo "<form method='post' action='clear.php'>";
-    // echo "<button type='submit' class='cartremove'>Clear</button></form>";
+    $sql = "SELECT * FROM purchases;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        //Check if there are any products
+        echo "<aside>";
+        echo "<h2>Shopping Cart</h2>";
+        echo "<form method='post' action='clear.php'>";
+        echo "<button type='submit' class='cartremove'>Clear</button></form>";
+        echo "<div class='outer'>";
+        echo "<div><strong>Name</strong></div>";
+        echo "<div><strong>Price (kr)</strong></div>";
+        echo "</div>";
+        echo "<div id='cart'>";
 
-    // echo "<div class='outer'>";
-    // echo "<div><strong>Name</strong></div>";
-    // echo "<div><strong>Price (kr)</strong></div>";
-    // echo "</div>";
-    // // Output data of each row
-    // while ($row = $result->fetch_assoc()) {
-    //     // Display product as a receipt
-    //     echo "<div class='outer'>";
-    //     echo "<div>" . $row["Name"] . "</div>";
-    //     echo "<div>" . $row["Price"] . "</div>";
-    //     echo "</div>";
-    // }
-    // echo "<form method='post' action='checkout.php'>";
-    // echo "<button type='submit'>Checkout</button></form></aside>";
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            // Display product as a receipt
+            echo "<div class='outer' id='product' value='" . $row["ID"] . "'>";
+            echo "<div>" . $row["Name"] . "</div>";
+            echo "<div id='price'>" . $row["Price"] . "</div>";
+            echo "</div>";
+        }
+        echo "</div>";
+        echo "<div class='outer'>";
+        echo "<div><strong>Sum</strong></div>";
+        echo "<div><strong id='sum'>ahh</strong></div>";
+        echo "</div>";
+        echo "<script>CountSum();</script>";
+        echo "<form method='post' action='checkout.php'>";
+        echo "<button type='submit'>Checkout</button></form></aside>";
+    }
     ?>
     <div id="box">
 
