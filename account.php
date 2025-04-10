@@ -52,7 +52,7 @@ if ($BUTTON_PRESSED) {
                             <td>${e.name}</td>
                             <td>${e.price}</td>
                             <td>${e.description}</td>
-                            <td><button id="Del" class="cartremove" onclick="product('del',${e.id});">Delete</button></td> <td><button></button></td>`;
+                            <td><button id="Del" class="cartremove" onclick="product('del',${e.id});">Delete</button></td>`;
                         });
                         document.getElementById("me").innerHTML = html;
                     };
