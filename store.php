@@ -57,10 +57,10 @@ include "header.php";
             </div>
             <div class='outer'>
             <div><strong>Sum</strong></div>
-            <div><strong id='sum'></strong></div>
+            <div><strong id='sum' class='sum'></strong></div>
             </div>
 <form method='post' action='checkout.php'>
-    <button type='submit'>Checkout</button>
+    <button type='submit' class='checkout'>Checkout</button>
 </form>
 </aside>`;
             maintag.insertAdjacentHTML("afterbegin", cart);
@@ -176,12 +176,12 @@ include "header.php";
         }
         echo "</div>";
         echo "<div class='outer'>";
-        echo "<div><strong>Sum</strong></div>";
-        echo "<div><strong id='sum'>ahh</strong></div>";
+        echo "<div><strong class='sum'>Sum</strong></div>";
+        echo "<div><strong id='sum' class='sum'>ahh</strong></div>";
         echo "</div>";
         echo "<script>CountSum();</script>";
         echo "<form method='post' action='checkout.php'>";
-        echo "<button type='submit'>Checkout</button></form></aside>";
+        echo "<button type='submit' class='checkout'>Checkout</button></form></aside>";
     }
     ?>
     <div id="box">
@@ -241,12 +241,12 @@ include "header.php";
                     while ($comment = $ctable->fetch_assoc()) {
                         echo "<div class='comment' id='comment-" . $comment["ID"] . "'><p><strong>" . htmlspecialchars($comment["Name"]) . "</strong> " . $comment["Date"] . "</p><p>" . htmlspecialchars($comment["Text"]) . "</p><button class='cartremove' name='delete' onclick='deletecomment(" . $comment["ID"] . ");' style='float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;'><i class='material-icons'>delete_forever</i></button></div>";
                     }
-                    echo "<summary>Comments</summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID'>Save comment</button></div></details>";
+                    echo "<summary>Comments</summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID' class='commentadd'>Save comment</button></div></details>";
                     echo "<p id='error-" . $products["ID"] . "' class='error'></p>";
                     echo "</div>";
                 } else { // If no comment exists 
                     echo "<div class='comments'><details id='details-" . $products["ID"] . "' class='decomments empty' open='true' disabled='true' >";
-                    echo "<summary></summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID'>Save comment</button></div></details>";
+                    echo "<summary></summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID' class='commentadd'>Save comment</button></div></details>";
                     echo "<summary style='list-style:none;'></summary></details><p id='error-" . $products["ID"] . "' class='error'></p></div>";
                 }
                 echo "<button onclick='BuyBoughtBought(" . $products['ID'] . ")' class='cartadd'>Add to Cart</button>";

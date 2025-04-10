@@ -41,10 +41,11 @@ mysqli_close($conn);
 
 
 ?>
+<main class="uppages">
 <title>Purrfect - Reset your Password</title>
 <h1> Account - Reset your Password </h1>
 
-<form method="post">
+<form method="post" id="grid">
     <?php if($pw_error == 1){ echo ("<p id=error>Password does not match $un </p>");} ?>
     <label for="pw">Password:</label>
     <input type="password" name="pw" required minlength="6">

@@ -1,8 +1,14 @@
 body {
   font-family: sans-serif;
+  background-image: linear-gradient(
+      rgba(249, 249, 249, 0.5),
+      rgba(249, 249, 249, 0.5)
+    ),
+    url(bg.jpg);
+  background-repeat: repeat;
 }
 * {
-  margin: 0pt;
+  margin: 0;
 }
 /* Common elements */
 
@@ -84,6 +90,8 @@ main.uppages {
   padding-top: 5pt;
   margin-top: auto;
   margin-bottom: auto;
+  height: fit-content;
+  width: fit-content;
 }
 img#logo {
   height: 70pt;
@@ -114,9 +122,13 @@ div#box {
     border: 2pt solid var(--black);
     .title {
       font-size: var(--step-2);
+      color: #444444;
     }
     .price {
       font-size: var(--step-2);
+      background-color: #d4f0e2c2;
+      color: #ff7a5a;
+      border-radius: 5pt;
     }
     .rating {
       font-size: var(--step-0);
@@ -130,6 +142,9 @@ div#box {
     }
     .des {
       font-size: var(--step--1);
+      background: #f5ebd6a6;
+      border-radius: 5pt;
+      color: #666666;
     }
 
     .comments {
@@ -209,12 +224,22 @@ aside {
 #header > #nav {
   display: grid;
   grid-template-columns: repeat(4, 0.2fr);
+  @media only screen and (max-width: 740px) {
+    /* display: block; */
+    grid-template-columns: row;
+    .thing {
+      margin-left: 0;
+    }
+  }
   .thing {
     display: flex;
     margin-left: 10pt;
     flex-direction: column;
   }
   form#search-form {
+    @media only screen and (max-width:740px) {
+      display: block !important;
+    }
     display: flex;
     margin-top: auto;
     margin-bottom: auto;
@@ -262,17 +287,28 @@ main {
   --yellow: #5be556;
   --darkyellow: #d9d96c;
   --lightyellow: #ffff66;
-  --black: #333;
+  --black: #333333;
   --red: #ed8463;
   --green: #73ff73;
   --darkred: #d86969;
   --white: white;
   --btn-border: "border: 3pt solid var(--black);";
 }
+strong.sum {
+  color: #00808e;
+}
+button.checkout {
+  border: 2pt solid #00808e;
+  background-color: #00808e;
+}
+button.commentadd {
+  border: 2pt solid #4a90e2;
+  background-color: #4a90e2;
+}
 
 button.cartadd {
-  background-color: var(--green);
-  border: 2pt solid var(--green);
+  background-color: #ff7a5a;
+  border: 2pt solid #ff7a5a;
 }
 button.cartremove {
   background-color: var(--red);
@@ -284,12 +320,19 @@ table#yp {
 }
 
 div#header {
+  @media only screen and (max-width: 740px) {
+    border: unset;
+    h1{
+      display: none !important;
+    }
+    display: block !important;
+  }
   padding-right: calc(2rem + 1vw);
   padding-left: calc(2rem + 1vw);
   border-bottom-left-radius: 10pt;
   border-bottom-right-radius: 10pt;
   display: flex;
-  background-color: rgb(from var(--black) r g b / 0.25);
+  background-color: RGB(204, 204, 204);
   justify-content: space-between;
   div#nav {
     button {
@@ -365,7 +408,8 @@ form#grid {
   display: grid;
   max-width: min-content;
 }
-p#Error, .error {
+p#Error,
+.error {
   color: var(--darkred);
   font-weight: bold;
   font-size: large;

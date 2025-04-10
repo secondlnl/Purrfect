@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="utf-8">
   <link href="style.css" rel="stylesheet" />
   <link href="utopia.css" rel="stylesheet" />
@@ -12,8 +12,9 @@
   <link rel="icon" type="image/gif" href="favicon.gif">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <div id=header>
-    <div style="display: flex; flex-direction:row; text-align:center;">
-    <img src="logo.svg" id="logo" alt="Website icon"> <h1 style="text-align: center !important;margin: auto">Purrfect</h1>
+    <div class="text" style="display: flex; flex-direction:row; text-align:center;">
+      <img src="logo.svg" id="logo" alt="Website icon">
+      <h1 style="text-align: center !important;margin: auto">Purrfect</h1>
     </div>
     <nav id="nav">
       <form id="search-form" method="get" action=search.php>
@@ -32,12 +33,3 @@
 
     </nav>
   </div>
-
-  <!-- <body> -->
-  <!-- <div class="header"> -->
-  <!-- Header -->
-  <!-- <div class="nav"> -->
-  <!-- Navigation -->
-  <!-- </div>
-  </div>
-  <main> -->
