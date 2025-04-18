@@ -233,7 +233,7 @@ include "header.php";
                 // THIS WORKS OK DONT FIX
                 echo "<p class='des'><strong>Description:</strong><br><em> " . htmlspecialchars($products["description"]) . "</em></p>";
                 echo "<p class='price'>Price: " . $products["price"] . "kr</p>";
-                $ctable = QueryMeThis("SELECT ID, Name, Text, Date FROM Comments  WHERE PID = ? ORDER BY ID DESC, Date DESC;", ["i", "" . $products["ID"]]);
+                $ctable = QueryMeThis("SELECT ID, Name, Text, Date FROM Comments  WHERE PID = ? AND Name ='".$_SESSION["un"]."' ORDER BY ID DESC, Date DESC;", ["i", "" . $products["ID"]]);
                 // Check if there are any products
                 if ($ctable->num_rows > 0) {
                     // Output data of each row
