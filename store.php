@@ -233,13 +233,13 @@ include "header.php";
                 // THIS WORKS OK DONT FIX
                 echo "<p class='des'><strong>Description:</strong><br><em> " . htmlspecialchars($products["description"]) . "</em></p>";
                 echo "<p class='price'>Price: " . $products["price"] . "kr</p>";
-                $ctable = QueryMeThis("SELECT ID, Name, Text, Date FROM Comments  WHERE PID = ? AND Name ='".$_SESSION["un"]."' ORDER BY ID DESC, Date DESC;", ["i", "" . $products["ID"]]);
+                $ctable = QueryMeThis("SELECT ID, Name, Text, Date FROM Comments  WHERE PID = ? ORDER BY ID DESC, Date DESC;", ["i", "" . $products["ID"]]);
                 // Check if there are any products
                 if ($ctable->num_rows > 0) {
                     // Output data of each row
                     echo "<div class='comments'><details id='details-" . $products["ID"] . "' class='decomments'>";
                     while ($comment = $ctable->fetch_assoc()) {
-                        echo "<div class='comment' id='comment-" . $comment["ID"] . "'><p><strong>" . htmlspecialchars($comment["Name"]) . "</strong> " . $comment["Date"] . "</p><p>" . htmlspecialchars($comment["Text"]) . "</p><button class='cartremove' name='delete' onclick='deletecomment(" . $comment["ID"] . ");' style='float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;'><i class='material-icons'>delete_forever</i></button></div>";
+                        echo "<div class='comment' id='comment-" . $comment["ID"] . "'><p><strong>" . htmlspecialchars($comment["Name"]) . "</strong> " . $comment["Date"] . "</p><p>" . htmlspecialchars($comment["Text"]) . "</p>"; if ($_SESSION["un"] == $comment["Name"]){ echo "<button class='cartremove' name='delete' onclick='deletecomment(" . $comment["ID"] . ");' style='float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;'><i class='material-icons'>delete_forever</i></button></div>";} else {echo "</div>";}
                     }
                     echo "<summary>Comments</summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID' class='commentadd'>Save comment</button></div></details>";
                     echo "<p id='error-" . $products["ID"] . "' class='error'></p>";
