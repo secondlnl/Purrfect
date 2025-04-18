@@ -151,7 +151,7 @@ include "header.php";
     if (!isset($_SESSION["loggedin"])) header("location: index.php");
     if (!isset($_SESSION["id"])) {
         header("location: index.php");
-    }
+    } // TODO: Add purchases for specific user and diplay for them only
     $sql = "SELECT * FROM Purchases;";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
