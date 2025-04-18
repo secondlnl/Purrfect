@@ -300,8 +300,8 @@ button.commentadd {
 }
 
 button.cartadd {
-  background-color: #ff7a5a;
-  border: 2pt solid #ff7a5a;
+  background-color: var(--green);
+  border: 2pt solid var(--green);
 }
 button.cartremove {
   background-color: var(--red);
