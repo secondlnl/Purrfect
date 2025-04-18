@@ -152,7 +152,7 @@ include "header.php";
     if (!isset($_SESSION["id"])) {
         header("location: index.php");
     }
-    $sql = "SELECT * FROM purchases;";
+    $sql = "SELECT * FROM Purchases;";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         //Check if there are any products

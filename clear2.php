@@ -23,13 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 	//
 	$prprd = mysqli_prepare($conn, "INSERT INTO Orders (UserID, Date, Products) VALUES(?,?,?);");
 	session_start();
-	mysqli_stmt_bind_param($prprd, "sss", $_SESSION["id"], (date("Y.m.d")), $tt);
+	$date = date("Y.m.d");
+	mysqli_stmt_bind_param($prprd, "sss", $_SESSION["id"], $date, $tt);
 	mysqli_stmt_execute($prprd);
 	mysqli_stmt_close($prprd);
 
 
 
-	$prepared = mysqli_prepare($conn, "truncate purchases");
+	$prepared = mysqli_prepare($conn, "truncate Purchases");
 	mysqli_stmt_execute($prepared);
 	header("location: store.php");
 	mysqli_stmt_close($prepared);
