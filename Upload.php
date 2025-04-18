@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Example MySQL code:
             // Assuming you have a 'users' table with a 'profile_picture' column
             $userId = $_SESSION["id"]; // Example user ID
-		  $stmt = $conn->prepare("UPDATE accounts SET img = ? WHERE id = ?");
+		  $stmt = $conn->prepare("UPDATE Accounts SET img = ? WHERE id = ?");
             $stmt->bind_param("si", $target_file, $userId); // Bind parameters
             if ($stmt->execute()) {
                 echo "Profile picture updated successfully.";
