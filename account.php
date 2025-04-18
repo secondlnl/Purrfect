@@ -11,7 +11,7 @@ $BUTTON_PRESSED = isset($_POST["butt"]);
 if ($BUTTON_PRESSED) {
     $BUTT = $_POST["butt"];
     if ($BUTT == "Sign out") {
-        $prepared = mysqli_prepare($conn, "truncate purchases");
+        $prepared = mysqli_prepare($conn, "truncate Purchases");
         mysqli_stmt_execute($prepared);
         session_unset();
         session_destroy();
