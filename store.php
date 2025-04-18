@@ -169,7 +169,7 @@ include "header.php";
         // Output data of each row
         while ($row = $result->fetch_assoc()) {
             // Display product as a receipt
-            echo "<div class='outer' id='product' value='" . $row["ID"] . "'>";
+            echo "<div class='outer' id='product'>";
             echo "<div>" . $row["Name"] . "</div>";
             echo "<div id='price'>" . $row["Price"] . "</div>";
             echo "</div>";
