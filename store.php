@@ -9,23 +9,6 @@ include "header.php";
         window.oldresp = "";
         window.newresp = "";
     }
-    // function deleteproduce(value){
-    //     console.debug(value);
-    // }
-    // function deleteable() {
-    //     const texte = document.querySelectorAll("div#product.outer");
-    //     texte.forEach(element => {
-    //         element.addEventListener("click", (event) => {
-    //             element.innerText = 0;
-    //             deleteproduce(element.getAttribute("value"));
-
-    //         });
-
-    //     });
-    //     console.debug(texte);
-
-    // }
-
     function CountSum() {
         const nums = document.querySelectorAll("div#price");
         sumsum = 0;
@@ -43,7 +26,6 @@ include "header.php";
     async function BuyBoughtBought(Product) {
         if (document.getElementById("cart") == null) {
             const maintag = document.getElementsByTagName("main")[0];
-            //window.cart = 1;
             const cart = `
             <aside>
             <h2>Shopping Cart</h2>
@@ -74,11 +56,9 @@ include "header.php";
             // Call a function when the state changes.
             if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
                 // Request finished. Do processing here.
-                // Request finished. Do processing here.
                 newresp = JSON.parse(req.responseText);
                 if (JSON.stringify(newresp) !== JSON.stringify(oldresp)) {
                     oldresp = newresp;
-                    // console.log(prow);
                     let html = "";
                     newresp.forEach(e => {
                         html += ` <div class='outer' id='product'> 
@@ -86,7 +66,6 @@ include "header.php";
     <div id='price'>${e.price}</div>
 </div>`
                     }); // TODO: Add product value so deleteable works.
-                    //document.getElementById(`cart`).insertAdjacentHTML("afterend", html);
                     document.getElementById(`cart`).innerHTML = html;
                     CountSum();
                 }
@@ -103,11 +82,9 @@ include "header.php";
             // Call a function when the state changes.
             if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
                 // Request finished. Do processing here.
-                // Request finished. Do processing here.
                 newresp = JSON.parse(req.responseText);
                 if (JSON.stringify(newresp) !== JSON.stringify(oldresp)) {
                     oldresp = newresp;
-                    // console.log(prow);
                     let html = "";
                     newresp.forEach(e => {
                         html = `
