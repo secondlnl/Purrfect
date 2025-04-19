@@ -148,7 +148,9 @@ include "header.php";
 </script>
 <main class="store" id="store">
     <?php
-    if (!isset($_SESSION["loggedin"])) {header("location: index.php");}
+    if (!isset($_SESSION["loggedin"]) && empty($_SESSION["loggedin"])) {
+        header("location: index.php");
+    }
     // TODO: Add purchases for specific user and diplay for them only
     $sql = "SELECT * FROM Purchases;";
     $result = $conn->query($sql);
@@ -237,7 +239,12 @@ include "header.php";
                     // Output data of each row
                     echo "<div class='comments'><details id='details-" . $products["ID"] . "' class='decomments'>";
                     while ($comment = $ctable->fetch_assoc()) {
-                        echo "<div class='comment' id='comment-" . $comment["ID"] . "'><p><strong>" . htmlspecialchars($comment["Name"]) . "</strong> " . $comment["Date"] . "</p><p>" . htmlspecialchars($comment["Text"]) . "</p>"; if ($_SESSION["un"] == $comment["Name"]){ echo "<button class='cartremove' name='delete' onclick='deletecomment(" . $comment["ID"] . ");' style='float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;'><i class='material-icons'>delete_forever</i></button></div>";} else {echo "</div>";}
+                        echo "<div class='comment' id='comment-" . $comment["ID"] . "'><p><strong>" . htmlspecialchars($comment["Name"]) . "</strong> " . $comment["Date"] . "</p><p>" . htmlspecialchars($comment["Text"]) . "</p>";
+                        if ($_SESSION["un"] == $comment["Name"]) {
+                            echo "<button class='cartremove' name='delete' onclick='deletecomment(" . $comment["ID"] . ");' style='float:right;margin-top:-59px;margin-right: -1px;min-width: fit-content;min-height: fit-content;'><i class='material-icons'>delete_forever</i></button></div>";
+                        } else {
+                            echo "</div>";
+                        }
                     }
                     echo "<summary>Comments</summary><div class='area'><label for='comment'>Have a say:</label><textarea  id='savecomment-" . $products['ID'] . "' rows='5' cols='33' placeholder='What say you about this product?'></textarea><button onclick='savecomment(" . $products['ID'] . ")' name='PID' class='commentadd'>Save comment</button></div></details>";
                     echo "<p id='error-" . $products["ID"] . "' class='error'></p>";
