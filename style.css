@@ -87,6 +87,12 @@ main.uppages {
 }
 
 #thing {
+  @media only screen and (max-width: 740px) {
+    display: grid;
+    margin: 0 !important;
+    grid-auto-flow: row !important;
+    grid-template-columns: max-content;
+  }
   padding-top: 5pt;
   margin-top: auto;
   margin-bottom: auto;
@@ -218,7 +224,7 @@ aside {
   display: grid;
   grid-template-columns: repeat(4, 0.2fr);
   @media only screen and (max-width: 740px) {
-    /* display: block; */
+    display: block !important;
     grid-template-columns: row;
     .thing {
       margin-left: 0;
@@ -315,6 +321,10 @@ table#yp {
 div#header {
   @media only screen and (max-width: 740px) {
     border: unset;
+    .text{
+      height: fit-content !important;
+      width: fit-content !important;
+    }
     h1{
       display: none !important;
     }
