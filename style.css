@@ -88,10 +88,10 @@ main.uppages {
 
 #thing {
   @media only screen and (max-width: 740px) {
-    display: grid;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row;
     margin: 0 !important;
-    grid-auto-flow: row !important;
-    grid-template-columns: max-content;
   }
   padding-top: 5pt;
   margin-top: auto;
@@ -222,10 +222,11 @@ aside {
 /* #nav:first-of-type > div:last-child { order: -1; } */
 #header > #nav {
   display: grid;
+  grid-auto-flow: column;
   grid-template-columns: repeat(4, 0.2fr);
   @media only screen and (max-width: 740px) {
-    display: block !important;
-    grid-template-columns: row;
+    display: flex !important;
+    flex-wrap: wrap !important;
     .thing {
       margin-left: 0;
     }
