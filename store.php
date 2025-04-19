@@ -1,6 +1,11 @@
 <?php
 include "config.php";
 include "header.php";
+
+if (!isset($_SESSION["loggedin"]) && empty($_SESSION["loggedin"])) {
+    header("location: index.php");
+    exit();
+}
 ?>
 <title>Purrfect - store</title> <!-- Title of this shit show-->
 <script>
@@ -125,9 +130,7 @@ include "header.php";
 </script>
 <main class="store" id="store">
     <?php
-    if (!isset($_SESSION["loggedin"]) && empty($_SESSION["loggedin"])) {
-        header("location: index.php");
-    }
+
     // TODO: Add purchases for specific user and diplay for them only
     $sql = "SELECT * FROM Purchases;";
     $result = $conn->query($sql);
