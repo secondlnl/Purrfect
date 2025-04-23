@@ -1,9 +1,8 @@
 <?php
 // Include a config which *go figure* configures the connections
-// XD Henrik changed
 include "config.php";
 include "header.php";
-
+// todo favorites list
 if (!isset($_SESSION["loggedin"]))
     header("location: index.php");
 $BUTTON_PRESSED = isset($_POST["butt"]);
