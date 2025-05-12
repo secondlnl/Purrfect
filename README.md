@@ -40,9 +40,9 @@ Create table purrfectdb01
 ```
 
 ### Making the tables
-*accounts*
+*Accounts*
 ```MySql
-CREATE TABLE `accounts` (
+CREATE TABLE `Accounts` (
   `ID` int(11) NOT NULL,
   `Username` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
@@ -50,9 +50,9 @@ CREATE TABLE `accounts` (
   `Seller` int(1) NOT NULL DEFAULT 0
 );
 ```
-*comments*
+*Comments*
 ```MySql
-CREATE TABLE `comments` (
+CREATE TABLE `Comments` (
   `ID` int(255) NOT NULL,
   `PID` int(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -60,18 +60,18 @@ CREATE TABLE `comments` (
   `Date` varchar(255) NOT NULL
 );
 ```
-*orders*
+*Orders*
 ```MySql
-CREATE TABLE `orders` (
+CREATE TABLE `Orders` (
   `OrderID` int(255) NOT NULL,
   `UserID` int(255) NOT NULL,
   `Date` varchar(255) NOT NULL,
   `Products` varchar(255) NOT NULL
 );
 ```
-*products*
+*Products*
 ```MySql
-CREATE TABLE `products` (
+CREATE TABLE `Products` (
   `ID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `Description` varchar(255) NOT NULL,
@@ -81,9 +81,9 @@ CREATE TABLE `products` (
   `SellerID` int(255) NOT NULL
 );
 ```
-*purchases*
+*Purchases*
 ```MySql
-CREATE TABLE `purchases` (
+CREATE TABLE `Purchases` (
   `Name` varchar(255) NOT NULL,
   `Description` varchar(255) NOT NULL,
   `Price` int(11) NOT NULL
@@ -91,56 +91,56 @@ CREATE TABLE `purchases` (
 ```
 and if you want to get all fancy
 
-*accounts*
+*Accounts*
 ```Mysql
-ALTER TABLE `accounts`
+ALTER TABLE `Accounts`
   ADD PRIMARY KEY (`ID`);
 
 ```
-*comments*
+*Comments*
 ```mysql
-ALTER TABLE `comments`
+ALTER TABLE `Comments`
   ADD PRIMARY KEY (`ID`);
 
 ```
-*orders*
+*Orders*
 ```mysql
-ALTER TABLE `orders`
+ALTER TABLE `Orders`
   ADD PRIMARY KEY (`OrderID`);
 
 ```
-*products*
+*Products*
 ```mysql
-ALTER TABLE `products`
+ALTER TABLE `Products`
   ADD PRIMARY KEY (`ID`);
 
 ```
-*accounts* (again) 
+*Accounts* (again) 
 ```mysql
-ALTER TABLE `accounts`
+ALTER TABLE `Accounts`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 ```
-*comments* (again)
+*Comments* (again)
 ```mysql
-ALTER TABLE `comments`
+ALTER TABLE `Comments`
   MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 ```
-*orders* (again)
+*Orders* (again)
 ```mysql
-ALTER TABLE `orders`
+ALTER TABLE `Orders`
   MODIFY `OrderID` int(255) NOT NULL AUTO_INCREMENT;
 ```
-*products* (again)
+*Products* (again)
 ```mysql
-ALTER TABLE `products`
+ALTER TABLE `Products`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 ```
 Maybe done.
 ### Bonus
 Congrats if you have made it this far, do you find your products a little empty and lonely like "Hey! Where are all my products". Well fear not for I have the fix, simply take this code and add some pretty sweet products if I say so myself.
 ```MySql
-INSERT INTO `products` (`ID`, `Name`, `Description`, `Price`, `Rating`, `Ratedby`, `SellerID`) VALUES
+INSERT INTO `Products` (`ID`, `Name`, `Description`, `Price`, `Rating`, `Ratedby`, `SellerID`) VALUES
 (1, 'Box', 'A box for your beautiful kittens', 25, 1, ' andreas,', 0),
 (2, 'Fur-tastic Groomer', 'A versatile grooming kit that includes a deshedding brush, nail clippers, and a grooming glove. Perfect for keeping your cat\'s coat smooth and shiny while reducing shedding.', 26, 1, ' andreas,', 0),
 (3, 'Purrfect Nap Bed\r\n', 'A plush, orthopedic bed designed to provide maximum comfort and support for cats of all ages. The removable, washable cover ensures easy maintenance.', 40, 2, ' andreas, seller,', 0),
