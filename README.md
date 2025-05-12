@@ -8,7 +8,7 @@
 
 ## Introduction
 
-A high school gradution web project, E-commerence site.
+A high school gradutation web project, E-commerence site.
 
 ### Why? / Rational
 
