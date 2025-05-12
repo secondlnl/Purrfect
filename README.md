@@ -90,6 +90,7 @@ CREATE TABLE `purchases` (
 );
 ```
 and if you want to get all fancy
+
 *accounts*
 ```Mysql
 ALTER TABLE `accounts`
@@ -149,4 +150,4 @@ INSERT INTO `products` (`ID`, `Name`, `Description`, `Price`, `Rating`, `Ratedby
 (9, 'Purrfect Health Vitamins', 'A comprehensive supplement powder with essential vitamins and minerals to support your cat’s overall health, from coat shine to joint support.', 15, 0, '', 0),
 (10, 'Feline Fun Laser', 'An automatic laser pointer with adjustable settings to keep your cat active and entertained even when you’re not home. Promotes exercise and mental stimulation.\r\n', 30, 0, '', 0);
 ```
-Oki, now you are done! *clap* *clap*
+Oki, now you are done! *clap* *clap* (Maybe time for popcorn! Or wait you should probably actually do these before that so you do not grease down your keyboard)
