@@ -2,11 +2,17 @@
 
 - [Purrfect](#purrfect)
   - [Introduction](#introduction)
+    - [Why? / Rational](#why--rational)
   - [Features](#features)
   - [Database instantiation](#database-instantiation)
 
 ## Introduction
-This project addresses the issue of cluttered, ad-heavy e-commerce sites by creating a clean, simple, and unobtrusive platform focused purely on the shopping experience. Developed through phases of analysis, design, and implementation, with a priority on essential functionality, the resulting site provides users with an easy way to create accounts, log in, browse products, and engage by commenting on and rating items, free from distractions.
+
+A high school gradutation web project, E-commerence site.
+
+### Why? / Rational
+
+Other than being a fun project, it also in my view fills a hole in the current market of e-commerence sites being the overwelming issue of advertisments and of invasive popups.
 
 ## Features
 
