@@ -19,11 +19,15 @@ Other than being a fun project, it also in my view fills a hole in the current m
 WIP
 
 ## Database instantiation
+
 Needed (Ensure these tools and utilies are installed before going forward)
-* A MySQL or equivalent server
+
+- A MySQL or equivalent server
 
 ### About the connection
+
 The database is connected to the program using ``` config.php ```, at the top **Updated on 05-12-2025**
+
 ```php
 // Declaire constants for quote, endquote Portability
 define("_SERVERADDRESS", "Localhost");
@@ -31,16 +35,21 @@ define("_SERVERUSER", "root");
 define("_SERVERPASS", "");
 define("_DBNAME", "PURRFECTDB01");
 ```
+
 The only ones you would need to touch is the last three, setting up the server user, password and the database used **(If you use a different db name, change this one if you want it to work.)**.
 
 ### Create the db
-Create your database with whatever name you like, I do not care but maybe something funny or not like **bananabread**. 
-```MySql 
+
+Create your database with whatever name you like, I do not care but maybe something funny or not like **bananabread**.
+
+```MySql
 Create table purrfectdb01
 ```
 
 ### Making the tables
+
 *Accounts*
+
 ```MySql
 CREATE TABLE `Accounts` (
   `ID` int(11) NOT NULL,
@@ -50,7 +59,9 @@ CREATE TABLE `Accounts` (
   `Seller` int(1) NOT NULL DEFAULT 0
 );
 ```
+
 *Comments*
+
 ```MySql
 CREATE TABLE `Comments` (
   `ID` int(255) NOT NULL,
@@ -60,7 +71,9 @@ CREATE TABLE `Comments` (
   `Date` varchar(255) NOT NULL
 );
 ```
+
 *Orders*
+
 ```MySql
 CREATE TABLE `Orders` (
   `OrderID` int(255) NOT NULL,
@@ -69,7 +82,9 @@ CREATE TABLE `Orders` (
   `Products` varchar(255) NOT NULL
 );
 ```
+
 *Products*
+
 ```MySql
 CREATE TABLE `Products` (
   `ID` int(11) NOT NULL,
@@ -81,7 +96,9 @@ CREATE TABLE `Products` (
   `SellerID` int(255) NOT NULL
 );
 ```
+
 *Purchases*
+
 ```MySql
 CREATE TABLE `Purchases` (
   `Name` varchar(255) NOT NULL,
@@ -89,56 +106,76 @@ CREATE TABLE `Purchases` (
   `Price` int(11) NOT NULL
 );
 ```
+
 and if you want to get all fancy
 
 *Accounts*
+
 ```Mysql
 ALTER TABLE `Accounts`
   ADD PRIMARY KEY (`ID`);
 
 ```
+
 *Comments*
+
 ```mysql
 ALTER TABLE `Comments`
   ADD PRIMARY KEY (`ID`);
 
 ```
+
 *Orders*
+
 ```mysql
 ALTER TABLE `Orders`
   ADD PRIMARY KEY (`OrderID`);
 
 ```
+
 *Products*
+
 ```mysql
 ALTER TABLE `Products`
   ADD PRIMARY KEY (`ID`);
 
 ```
-*Accounts* (again) 
+
+*Accounts* (again)
+
 ```mysql
 ALTER TABLE `Accounts`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 ```
+
 *Comments* (again)
+
 ```mysql
 ALTER TABLE `Comments`
   MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 ```
+
 *Orders* (again)
+
 ```mysql
 ALTER TABLE `Orders`
   MODIFY `OrderID` int(255) NOT NULL AUTO_INCREMENT;
 ```
+
 *Products* (again)
+
 ```mysql
 ALTER TABLE `Products`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 ```
+
 Maybe done.
+
 ### Bonus
+
 Congrats if you have made it this far, do you find your products a little empty and lonely like "Hey! Where are all my products". Well fear not for I have the fix, simply take this code and add some pretty sweet products if I say so myself.
+
 ```MySql
 INSERT INTO `Products` (`ID`, `Name`, `Description`, `Price`, `Rating`, `Ratedby`, `SellerID`) VALUES
 (1, 'Box', 'A box for your beautiful kittens', 25, 1, '', 0),
@@ -150,4 +187,5 @@ INSERT INTO `Products` (`ID`, `Name`, `Description`, `Price`, `Rating`, `Ratedby
 (9, 'Purrfect Health Vitamins', 'A comprehensive supplement powder with essential vitamins and minerals to support your cat’s overall health, from coat shine to joint support.', 15, 0, '', 0),
 (10, 'Feline Fun Laser', 'An automatic laser pointer with adjustable settings to keep your cat active and entertained even when you’re not home. Promotes exercise and mental stimulation.\r\n', 30, 0, '', 0);
 ```
+
 Oki, now you are done! *clap* *clap* (Maybe time for popcorn! Or wait you should probably actually do these before that so you do not grease down your keyboard)
