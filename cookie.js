@@ -1,6 +1,18 @@
-function setCookie(cname,cvalue,exdays) {
+function lclose() {
+    console.log(document.getElementsByClassName("cookie"));
+
+  document.getElementsByClassName("cookie")[0].setAttribute("style", "display: none !important;");
+}
+function clicked() {
+  setCookie("cookieok", "ok", 30);
+  console.log(document.getElementsByClassName("cookie"));
+  document
+    .getElementsByClassName("cookie")[0]
+    .setAttribute("style", "display: none !important;");
+}
+function setCookie(cname, cvalue, exdays) {
   const d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
   let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
@@ -8,10 +20,10 @@ function setCookie(cname,cvalue,exdays) {
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) == " ") {
       c = c.substring(1);
     }
     if (c.indexOf(name) == 0) {
@@ -22,14 +34,14 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-  let user = getCookie("username");
+  let user = getCookie("cookieok");
   if (user != "") {
-    alert("Welcome again " + user);
+    document
+      .getElementsByClassName("cookie")[0]
+      .setAttribute("style", "display: none !important;");
   } else {
-     user = prompt("Please enter your name:","");
-     if (user != "" && user != null) {
-       setCookie("username", user, 30);
-     }
+    document
+      .getElementsByClassName("cookie")[0]
+      .setAttribute("style", "display: inital !important;");
   }
 }
-

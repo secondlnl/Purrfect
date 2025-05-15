@@ -33,4 +33,4 @@
     </nav>
   </div>
   <script src="cookie.js"></script>
-  <body onload="checkCookie()"><div class="cookie"> banner?</div></body>
+  <body onload="checkCookie()"><div class="cookie">We using them cookies, ayet freshly baked just for you. We use them to keep this place running, so you can login and stuff<button onclick="clicked();">I know</button><button onclick="lclose();">Close</button></div></body>
