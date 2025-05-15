@@ -32,3 +32,5 @@
 
     </nav>
   </div>
+  <script src="cookie.js"></script>
+  <body onload="checkCookie()"><div class="cookie"> banner?</div></body>
